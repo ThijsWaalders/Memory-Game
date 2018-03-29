@@ -1,3 +1,5 @@
+/* creating a flex grid with the cards. */
+
 *,
 *::before,
 *::after {
@@ -9,114 +11,37 @@ body {
   background: #6589F9;
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-}
-
-/*
- * Styles for the deck of cards
- */
-
 .grid {
-    list-style-type: none;
-    width: 660px;
-    max-width: 960px;
-    height: 560px;
-    background: linear-gradient(160deg, #cfd1d1 0%, #c54018 100%);
-    padding: 32px;
-    border-radius: 10px;
-    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-    display: grid; /* Display grid instead of flex */
-    grid-template-columns: 125px 125px 125px 125px;
-    grid-template-rows: 125px 125px 125px 125px; /* eerste row .header 80px 2de row .hero 350px 3de row .main auto 4de row .footer 80px */
-    flex-wrap: wrap;
-    /* justify-content: space-evenly; */
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 auto;
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
-
-s.deck .card {
-    height: 125px;
-    width: 125px;
-    background: #2e3d49;
-    font-size: 0;
-    color: #ffffff;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+.card {
+  margin: 5px;
+  background-color: #6589F9;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 150px;
+  width: 150px;
 }
 
-.deck .card.open {
-    transform: rotateY(0);
-    /* background: #02b3e4; */
-    cursor: default;
-}
+/* Add selected style for selected cards */
+.selected {
+    border: 4px solid blue;
+  }
 
-.deck .card.match {
-    cursor: default;
-    /* background: #02ccba; */
-    /* font-size: 33px; */
-}
-
-/*
- * Styles for the Score Panel
- */
-
-.score-panel {
-    text-align: left;
-    width: 345px;
-    margin-bottom: 10px;
-}
-
-.score-panel .stars {
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    margin: 0 5px 0 0;
-}
-
-.score-panel .stars li {
-    list-style: none;
-    display: inline-block;
-}
-
-.score-panel .restart {
-    float: right;
-    cursor: pointer;
-}
-
-
-
-
-/* cards styling  */
-
+/* add style for matching cards  */
 .match {
     border: 4px solid red;
     background-image: none !important;
-}
+  }
 
-
-
-
-
+  /* styles for card flipping */
 .card {
-    align-content: center;
-    padding: 1em;
-    width: 125px;
-    height: 125px;
     position: relative;
     transition: all .4s linear;
     transform-style: preserve-3d;
@@ -136,42 +61,21 @@ s.deck .card {
     backface-visibility: hidden;
 }
 
-
-
-
-
-
-
+/* front of the card (backside in real life) has a question mark */
 .front {
-    background: #FAB942 url('../img/question.gif') no-repeat center center / contain;
-}
-
-
-
-
-
+    background: #FAB942 url('../img/question.png') no-repeat center center / contain;
+    background-origin:padding-box; padding: 50%;    /*werkt niet??*/
+  }
 
 .back {
-transform: rotateY(180deg);
-background-color: white;
-background-size: contain;
-background-repeat: no-repeat;
-background-position: center center;
+    transform: rotateY(180deg);
 }
 
-
-
-
+/* Selected items will be rotated */
 .selected {
-transform: rotateY(180deg);
-}
-
-.match .front {
-background: white !important;
-}
-
-
-
-
-
-
+    transform: rotateY(180deg);
+  }
+  
+  .match .front {
+    background: white !important;
+  }
