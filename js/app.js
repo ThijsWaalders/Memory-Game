@@ -126,9 +126,11 @@ $(document).ready(function(){
 
 const cardsArray = [{
     'name': 'chrome',
-
-
-    // document.createElement('fab fa-chrome fa-5x');},
+    function (){
+      document.createElement('i');
+      document.getElementsByTagName('i').classList.add('fas fa-camera-retro');
+      // i.classList.add('fab, fa-chrome, fa-5x');
+    }
   },
   {
     'name': 'earlybirds',
@@ -188,7 +190,7 @@ gameGrid.forEach(function (item) {
   front.classList.add('front');
 
   var back = document.createElement('div');
-  // back.classList.add('back');
+   back.classList.add('back');
   // back.style.backgroundImage = 'url(' + img + ')';
 
   grid.appendChild(card);
