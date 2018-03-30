@@ -8,11 +8,23 @@
 
 body {
   margin: 20px 0;
-  background: #6589F9;
+  background: rgb(255, 255, 255);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
 }
 
 .grid {
-    max-width: 960px;
+    max-width: 900px;
     margin: 0 auto;
     display: grid;
     flex-wrap: wrap;
@@ -24,6 +36,7 @@ body {
 
 .deck {
   margin: auto;
+  border-radius: 10px;
   max-width: 960px;
   background: #E5E83A;
   background: -moz-linear-gradient(-45deg, #E5E83A 0%, #C5347F 100%);
@@ -33,10 +46,6 @@ body {
 
 .card {
   margin: auto;
-  background-color: #6589F9;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
   height: 100px;
   width: 100px;
 }
@@ -58,29 +67,35 @@ body {
     transition: all .4s linear;
     transform-style: preserve-3d;
     margin: 5px;
+    border-radius: 10px;
 }
 
 .back,
 .front {
     position: absolute;
     backface-visibility: hidden;
+    border-radius: 30px;
 }
 
 /* front of the card (backside in real life) has a question mark */
 .front {
     background: #FAB942 url('../img/question.png') no-repeat center center / contain;
-    background-origin:padding-box; padding: 50%;    /*werkt niet??*/
+    background-size: 20%;
   }
 
 .back {
     transform: rotateY(180deg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 /* Selected items will be rotated */
 .selected {
     transform: rotateY(180deg);
+    border-radius: 30px;
   }
-  
+
   .match .front {
-    background: white !important;
+    border-radius: 30px;
   }

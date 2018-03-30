@@ -1,38 +1,39 @@
+// Create an array that holds all cards
 const cardsArray = [{
-'name': 'fab fa-chrome fa-5x',
-    createIcon(){
-      const i = document.createElement('i');
-      i.classList.add('fab fa-chrome fa-5x');
-    }
+    'name' : 'chrome',
+    'img': 'img/chrome.png',
   },
   {
     'name': 'earlybirds',
+    'img': 'img/earlybirds.png',
   },
   {
     'name': 'bomb',
+    'img': 'img/bomb.png',
   },
   {
     'name': 'stack-overflow',
-    //'img': 'img/mario.png',
+    'img': 'img/stack.png',
   },
   {
     'name': 'slack',
-    //'img': 'img/luigi.png',
+    'img': 'img/slack.png',
   },
   {
-    'name': 'soundcloud',
-    //'img': 'img/peach.png',
+    'name': 'headphones',
+    'img': 'img/headphones.png',
   },
   {
     'name': 'drupal',
-    //'img': 'img/1up.png',
+    'img': 'img/drupal.png',
   },
   {
     'name': 'windows',
-    //'img': 'img/mushroom.png',
+    'img': 'img/windows.png',
   },
 ];
 
+//Create grid that represents the cards
 var gameGrid = cardsArray.concat(cardsArray).sort(function () {
   return 0.5 - Math.random();
 });
@@ -62,7 +63,7 @@ gameGrid.forEach(function (item) {
 
   var back = document.createElement('div');
    back.classList.add('back');
-  // back.style.backgroundImage = 'url(' + img + ')';
+   back.style.backgroundImage = 'url(' + img + ')';
 
   grid.appendChild(card);
   card.appendChild(front);
