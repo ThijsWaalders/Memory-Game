@@ -1,3 +1,152 @@
+const cardsArray = [{
+'name': 'fab fa-chrome fa-5x',
+    createIcon(){
+      const i = document.createElement('i');
+      i.classList.add('fab fa-chrome fa-5x');
+    }
+  },
+  {
+    'name': 'earlybirds',
+  },
+  {
+    'name': 'bomb',
+  },
+  {
+    'name': 'stack-overflow',
+    //'img': 'img/mario.png',
+  },
+  {
+    'name': 'slack',
+    //'img': 'img/luigi.png',
+  },
+  {
+    'name': 'soundcloud',
+    //'img': 'img/peach.png',
+  },
+  {
+    'name': 'drupal',
+    //'img': 'img/1up.png',
+  },
+  {
+    'name': 'windows',
+    //'img': 'img/mushroom.png',
+  },
+];
+
+var gameGrid = cardsArray.concat(cardsArray).sort(function () {
+  return 0.5 - Math.random();
+});
+
+var firstGuess = '';
+var secondGuess = '';
+var count = 0;
+var previousTarget = null;
+var delay = 1200;
+
+var game = document.getElementById('game');
+var grid = document.createElement('section');
+grid.setAttribute('class', 'grid');
+game.appendChild(grid);
+
+gameGrid.forEach(function (item) {
+  var name = item.name,
+      img = item.img;
+
+
+  var card = document.createElement('div');
+  card.classList.add('card');
+  card.dataset.name = name;
+
+  var front = document.createElement('div');
+  front.classList.add('front');
+
+  var back = document.createElement('div');
+   back.classList.add('back');
+  // back.style.backgroundImage = 'url(' + img + ')';
+
+  grid.appendChild(card);
+  card.appendChild(front);
+  card.appendChild(back);
+});
+
+var match = function match() {
+  var selected = document.querySelectorAll('.selected');
+  selected.forEach(function (card) {
+    card.classList.add('match');
+  });
+};
+
+var resetGuesses = function resetGuesses() {
+  firstGuess = '';
+  secondGuess = '';
+  count = 0;
+
+  var selected = document.querySelectorAll('.selected');
+  selected.forEach(function (card) {
+    card.classList.remove('selected');
+  });
+};
+
+grid.addEventListener('click', function (event) {
+
+  var clicked = event.target;
+
+  if (clicked.nodeName === 'SECTION' || clicked === previousTarget || clicked.parentNode.classList.contains('selected')) {
+    return;
+  }
+
+  if (count < 2) {
+    count++;
+    if (count === 1) {
+      firstGuess = clicked.parentNode.dataset.name;
+      console.log(firstGuess);
+      clicked.parentNode.classList.add('selected');
+    } else {
+      secondGuess = clicked.parentNode.dataset.name;
+      console.log(secondGuess);
+      clicked.parentNode.classList.add('selected');
+    }
+
+    if (firstGuess && secondGuess) {
+      if (firstGuess === secondGuess) {
+        setTimeout(match, delay);
+      }
+      setTimeout(resetGuesses, delay);
+    }
+    previousTarget = clicked;
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 1. create an array to hold the cards
 2. change the  name of the array in the shuffle function to the list array
@@ -121,127 +270,3 @@ $(document).ready(function(){
 });
 
 */
-
-
-
-const cardsArray = [{
-    'name': 'chrome',
-    function (){
-      document.createElement('i');
-      document.getElementsByTagName('i').classList.add('fas fa-camera-retro');
-      // i.classList.add('fab, fa-chrome, fa-5x');
-    }
-  },
-  {
-    'name': 'earlybirds',
-    //'img': 'img/star.png',
-  },
-  {
-    'name': 'bomb',
-    //'img': 'img/bobomb.png',
-  },
-  {
-    'name': 'stack-overflow',
-    //'img': 'img/mario.png',
-  },
-  {
-    'name': 'slack',
-    //'img': 'img/luigi.png',
-  },
-  {
-    'name': 'soundcloud',
-    //'img': 'img/peach.png',
-  },
-  {
-    'name': 'drupal',
-    //'img': 'img/1up.png',
-  },
-  {
-    'name': 'windows',
-    //'img': 'img/mushroom.png',
-  },
-];
-
-var gameGrid = cardsArray.concat(cardsArray).sort(function () {
-  return 0.5 - Math.random();
-});
-
-var firstGuess = '';
-var secondGuess = '';
-var count = 0;
-var previousTarget = null;
-var delay = 1200;
-
-var game = document.getElementById('game');
-var grid = document.createElement('section');
-grid.setAttribute('class', 'grid');
-game.appendChild(grid);
-
-gameGrid.forEach(function (item) {
-  var name = item.name,
-      img = item.img;
-
-
-  var card = document.createElement('div');
-  card.classList.add('card');
-  card.dataset.name = name;
-
-  var front = document.createElement('div');
-  front.classList.add('front');
-
-  var back = document.createElement('div');
-   back.classList.add('back');
-  // back.style.backgroundImage = 'url(' + img + ')';
-
-  grid.appendChild(card);
-  card.appendChild(front);
-  card.appendChild(back);
-});
-
-var match = function match() {
-  var selected = document.querySelectorAll('.selected');
-  selected.forEach(function (card) {
-    card.classList.add('match');
-  });
-};
-
-var resetGuesses = function resetGuesses() {
-  firstGuess = '';
-  secondGuess = '';
-  count = 0;
-
-  var selected = document.querySelectorAll('.selected');
-  selected.forEach(function (card) {
-    card.classList.remove('selected');
-  });
-};
-
-grid.addEventListener('click', function (event) {
-
-  var clicked = event.target;
-
-  if (clicked.nodeName === 'SECTION' || clicked === previousTarget || clicked.parentNode.classList.contains('selected')) {
-    return;
-  }
-
-  if (count < 2) {
-    count++;
-    if (count === 1) {
-      firstGuess = clicked.parentNode.dataset.name;
-      console.log(firstGuess);
-      clicked.parentNode.classList.add('selected');
-    } else {
-      secondGuess = clicked.parentNode.dataset.name;
-      console.log(secondGuess);
-      clicked.parentNode.classList.add('selected');
-    }
-
-    if (firstGuess && secondGuess) {
-      if (firstGuess === secondGuess) {
-        setTimeout(match, delay);
-      }
-      setTimeout(resetGuesses, delay);
-    }
-    previousTarget = clicked;
-  }
-});
