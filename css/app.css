@@ -96,6 +96,10 @@ body {
   transform: rotateY(180deg);
 }
 
+.match .back {
+  transform: rotate(0deg);
+}
+
 .score-panel {
   text-align: center;
   padding: 30px;
