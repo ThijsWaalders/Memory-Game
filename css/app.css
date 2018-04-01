@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+header {
+  text-align: center;
+}
+
 body {
   margin: 20px 0;
   background: #6589F9;
@@ -48,7 +52,7 @@ body {
 /* add style for matching cards  */
 .match {
     border: 4px solid greenyellow;
-    border-radius: 30px;
+    border-radius: 50%;
   }
 
   /* styles for card flipping */
@@ -56,14 +60,14 @@ body {
     position: relative;
     transition: all .4s linear;
     transform-style: preserve-3d;
-    border-radius: 30px;
+    border-radius: 50%;
 }
 
 .back,
 .front {
     position: absolute;
     backface-visibility: hidden;
-    border-radius: 30px;
+    border-radius: 50%;
 }
 
 /* front of the card (backside in real life) has a question mark */
@@ -84,10 +88,20 @@ body {
 /* Selected items will be rotated */
 .selected {
     transform: rotateY(180deg);
-    border-radius: 30px;
+    border-radius: 50%;
   }
 
-  .match .front {
-    background: white !important;
-    border-radius: 30px;
-  }
+.match .front {
+  border-radius: 50%;
+  transform: rotateY(180deg);
+}
+
+.score-panel {
+  text-align: center;
+  padding: 30px;
+}
+
+.score-panel li  {
+  list-style-type: none;
+  display: block;
+}

@@ -1,4 +1,4 @@
-// Create an array that holds all cards
+// Create an array that holds all cards as objects
 const cardsArray = [{
   'name' : 'chrome',
   'img': 'img/chrome.png',
@@ -33,7 +33,7 @@ const cardsArray = [{
 },
 ];
 
-//Create grid that represents the cards
+//Duplicate the array/cards to get a pair of all 8 cards
 var gameGrid = cardsArray.concat(cardsArray).sort(function () {
 return 0.5 - Math.random();
 });
@@ -44,32 +44,38 @@ var count = 0;
 var previousTarget = null;
 var delay = 1200;
 
+// create grid
 var game = document.getElementById('game');
 var grid = document.createElement('section');
 grid.setAttribute('class', 'grid');
 game.appendChild(grid);
 
+// loop through the cards
 gameGrid.forEach(function (item) {
 var name = item.name,
     img = item.img;
 
-
+// create the cards with a div and add a class
 var card = document.createElement('div');
 card.classList.add('card');
 card.dataset.name = name;
 
+// create frontside
 var front = document.createElement('div');
 front.classList.add('front');
 
+// create backside
 var back = document.createElement('div');
  back.classList.add('back');
  back.style.backgroundImage = 'url(' + img + ')';
 
+//  append card to grid, front and back
 grid.appendChild(card);
 card.appendChild(front);
 card.appendChild(back);
 });
 
+// add class to style selected cards
 var match = function match() {
 var selected = document.querySelectorAll('.selected');
 selected.forEach(function (card) {
@@ -88,28 +94,36 @@ selected.forEach(function (card) {
 });
 };
 
+// add eventlistener to grid to flip the cards when a card is clicked
 grid.addEventListener('click', function (event) {
 
+// event target is the clicked item
 var clicked = event.target;
 
+// Do not allow the grid section to get selected, only the divs inside the grid
 if (clicked.nodeName === 'SECTION' || clicked === previousTarget || clicked.parentNode.classList.contains('selected')) {
   return;
 }
 
+//function for matching cards
 if (count < 2) {
   count++;
   if (count === 1) {
+    // assign first guess
     firstGuess = clicked.parentNode.dataset.name;
     console.log(firstGuess);
     clicked.parentNode.classList.add('selected');
   } else {
+    // assign second guess
     secondGuess = clicked.parentNode.dataset.name;
     console.log(secondGuess);
     clicked.parentNode.classList.add('selected');
   }
-
+  // if both guesses are not empty
   if (firstGuess && secondGuess) {
+    // and the first guess matches the second guess
     if (firstGuess === secondGuess) {
+      // then run the match function with a little delay
       setTimeout(match, delay);
     }
     setTimeout(resetGuesses, delay);
