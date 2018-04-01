@@ -83,11 +83,13 @@ selected.forEach(function (card) {
 });
 };
 
+// add selection
 var resetGuesses = function resetGuesses() {
 firstGuess = '';
 secondGuess = '';
 count = 0;
 
+// remove selection
 var selected = document.querySelectorAll('.selected');
 selected.forEach(function (card) {
   card.classList.remove('selected');
