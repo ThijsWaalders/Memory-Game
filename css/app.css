@@ -50,10 +50,10 @@ body {
   } */
 
 /* add style for matching cards  */
-.match {
+/* .match {
     border: 4px solid greenyellow;
     border-radius: 50%;
-  }
+  } */
 
   /* styles for card flipping */
 .card {
@@ -93,11 +93,13 @@ body {
 
 .match .front {
   border-radius: 50%;
-  transform: rotateY(180deg);
+  visibility: hidden;
 }
 
+/* let the matched cards stay rotated */
 .match .back {
-  transform: rotate(0deg);
+  margin: 0;
+  transform: rotate(360deg);
 }
 
 .score-panel {
