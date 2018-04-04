@@ -47,7 +47,9 @@ let matchCount = 0;
 const modal = document.querySelector(".modal");
 const modalLost = document.querySelector(".modal-lost");
 const modalStart = document.querySelector(".modal-start");
-const startButton = document.querySelector(".start");
+const startButton = document.querySelector(".start-button");
+const restartButton = document.querySelector(".restart-button");
+
 
 // create grid
 const game = document.getElementById('game');
@@ -175,6 +177,13 @@ startButton.addEventListener('click',function (){
   modalStart.classList.remove('start-screen');
   console.log("Game starts now, good luck!");
 });
+
+// onclick eventlistener and function for the restart button
+restartButton.addEventListener('click',function () {
+  startTimer(twoMinutes, display);
+  modalLost.classList.remove('lostscreen');
+  gameGrid;
+})
 
 
 
