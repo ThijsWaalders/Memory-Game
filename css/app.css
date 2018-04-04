@@ -7,7 +7,11 @@
 }
 
 header {
+  height: 60px;
+  margin-top: -20px;
   text-align: center;
+  font-size: 2em;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 body {
@@ -104,12 +108,17 @@ body {
 
 .score-panel {
   text-align: center;
-  padding: 30px;
+  font-size: 2em;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+
 }
 
 .score-panel li  {
+  position: relative;
   list-style-type: none;
-  display: block;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 .modal {
@@ -128,4 +137,51 @@ body {
 .win-screen {
   visibility: unset;
   opacity: 1;
+}
+
+
+.modal-lost {
+  text-align: center;
+  margin: auto;
+  visibility: hidden;
+  background-color: azure;
+  width: 80%;
+  height: 80%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.lost-screen {
+  visibility: unset;
+  opacity: 1;
+}
+
+.modal-start {
+  padding: 50px;
+  text-align: center;
+  margin: auto;
+  visibility: hidden;
+  background-color: azure;
+  width: 60%;
+  height: 50%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.start-screen {
+  visibility: unset;
+  opacity: 1;
+}
+
+#time {
+  color: rgb(84, 0, 0);
+  font-size: 2em;
+}
+
+.restart {
+  margin: 15px;
 }

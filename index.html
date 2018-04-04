@@ -7,6 +7,7 @@
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="css/app.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- do I really need jQuery? -->
 </head>
 <body>
 
@@ -14,28 +15,49 @@
         <header>
             <h1>Matching Game</h1>
         </header>
-
         <section class="score-panel">
-        	<span class="moves">3</span> Moves
-            <br>
+            <div>You only have <span id="time">02:00</span> left!</div>
+            <span class="moves">3</span> Moves
             <div class="stars">
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
+        		<i class="fa fa-star fa-2x"></i>
+        		<i class="fa fa-star fa-2x"></i>
+        		<i class="fa fa-star fa-2x"></i>
             </div>
-            <br>
+
             <div class="restart">
-        		<i class="fa fa-repeat"></i>
+        		<i class="fa fa-repeat fa-3x"></i>
         	</div>
         </section>
 
         <ul class="deck" id="game">
         </ul>
-        <div class="modal">
-            <h2>Congratulations! You are a winner!</h2>
-        </div>
-    </div>
 
+        <div class="modal-start start-screen">
+            <h2>Welcome!!</h2><br>
+            <p>Just pick a set of 2 cards, do they match?</p>
+            <br>
+             <button class="start">START!</button>
+            <p>A start button allows the player to reset the game board, the timer, and the star rating.</p>
+        </div>
+
+        <div class="modal">
+            <h2>Congratulations! You are a winner!</h2><br>
+            <h3>Play again?</h3>
+                <p>
+                <br>
+                It should also tell the user how much time it took to win the game, and what the star rating was.</p>
+                <br>
+                <p>A restart button allows the player to reset the game board, the timer, and the star rating.</p>
+        </div>
+
+
+        <div class="modal-lost">
+                <h2>Too bad, you lose!!</h2><br>
+                <p>Play again?</p>
+                <br>
+                <p>A restart button allows the player to reset the game board, the timer, and the star rating.</p>
+            </div>
+    </div>
     <script src="js/app.js"></script>
 </body>
 </html>

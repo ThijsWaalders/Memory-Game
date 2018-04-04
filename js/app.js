@@ -60,6 +60,9 @@ const delay = 1200;
 const delayLong = 2400;
 let matchCount = 0;
 const modal = document.querySelector(".modal");
+const modalLost = document.querySelector(".modal-lost");
+const modalStart = document.querySelector(".modal-start");
+const startButton = document.querySelector(".start");
 
 
 // create grid
@@ -158,12 +161,30 @@ grid.addEventListener('click', function (event) {
   }
 });
 
+// start the timer and close start screen with a onclick eventlistener added to the start button
+startButton.addEventListener('click',function (){
+  function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+      minutes = parseInt(timer / 60, 10);
+      seconds = parseInt(timer % 60, 10);
 
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
 
+      display.textContent = minutes + ":" + seconds;
 
-
-
-
+      if (--timer < 0) {
+          timer = duration;
+      }
+    }, 1000);
+  }
+  var twoMinutes = 60 * 2,
+      display = document.querySelector('#time');
+  startTimer(twoMinutes, display);
+  modalStart.classList.remove('start-screen');
+  console.log("Game starts now, good luck!");
+});
 
 
 
@@ -173,11 +194,11 @@ grid.addEventListener('click', function (event) {
 3. create a loop that loops true each card and create it's html and stop at the last one - Check!
 
 
-* Create a list that holds all of your cards
+* Create a list that holds all of your cards - sort of check? I only see 1 <ul></ul> with all the cards
 
 
 
-* Display the cards on the page
+* Display the cards on the page - Check!
 *   - shuffle the list of cards using the provided "shuffle" method below
 *   - loop through each card and create its HTML
 *   - add each card's HTML to the page
