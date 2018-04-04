@@ -112,11 +112,19 @@ body {
   display: block;
 }
 
-.win-screen {
-  z-index: 1500;
+.modal {
+  visibility: hidden;
   background-color: azure;
   width: 80%;
   height: 80%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.win-screen {
+  visibility: unset;
   transform: scale(1);
   opacity: 1;
 }

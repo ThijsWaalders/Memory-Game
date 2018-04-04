@@ -59,6 +59,7 @@ var previousTarget = null;
 var delay = 1200;
 let matchCount = 0;
 
+
 // create grid
 const game = document.getElementById('game');
 const grid = document.createElement('section');
