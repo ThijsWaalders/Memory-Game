@@ -33,25 +33,10 @@ const cardsArray = [{
 },
 ];
 
-// Shuffle function from http://stackoverflow.com/a/2450976 is a lot bigger than the randomize function I've followed:
-// function shuffle(cardsArray) {
-// var currentIndex = cardsArray.length,
-//   temporaryValue, randomIndex;
-// while (currentIndex !== 0) {
-//   randomIndex = Math.floor(Math.random() * currentIndex);
-//   currentIndex -= 1;
-//   temporaryValue = cardsArray[currentIndex];
-//   cardsArray[currentIndex] = cardsArray[randomIndex];
-//   cardsArray[randomIndex] = temporaryValue;
-// }
-// return cardsArray;
-// }
-
 //Duplicate the array/cards to get a pair of all 8 cards and then randomize all cards
 let gameGrid = cardsArray.concat(cardsArray).sort(function () {
   return 0.5 - Math.random();
 });
-
 let firstGuess = '';
 let secondGuess = '';
 let count = 0;
@@ -63,7 +48,6 @@ const modal = document.querySelector(".modal");
 const modalLost = document.querySelector(".modal-lost");
 const modalStart = document.querySelector(".modal-start");
 const startButton = document.querySelector(".start");
-
 
 // create grid
 const game = document.getElementById('game');
@@ -153,6 +137,11 @@ grid.addEventListener('click', function (event) {
         // When a user wins the game, a modal appears to congratulate the player and ask if they want to play again. It should also tell the user how much time it took to win the game, and what the star rating was.
         if (matchCount === 16) {
           setTimeout(modal.classList.add('win-screen'),delayLong);
+          console.log("Win screen pops up");
+          //stop timer ?!?!?!
+
+
+
         }
       }
       setTimeout(resetGuesses, delay);
@@ -164,7 +153,7 @@ grid.addEventListener('click', function (event) {
 // start the timer and close start screen with a onclick eventlistener added to the start button
 startButton.addEventListener('click',function (){
   function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
+    let timer = duration, minutes, seconds;
     setInterval(function () {
       minutes = parseInt(timer / 60, 10);
       seconds = parseInt(timer % 60, 10);
@@ -180,7 +169,7 @@ startButton.addEventListener('click',function (){
       }
     }, 1000);
   }
-  var twoMinutes = 60 * 2,
+  let twoMinutes = 60 * 2,
       display = document.querySelector('#time');
   startTimer(twoMinutes, display);
   modalStart.classList.remove('start-screen');
@@ -198,12 +187,20 @@ startButton.addEventListener('click',function (){
 * Create a list that holds all of your cards - sort of check? I only see 1 <ul></ul> with all the cards
 
 
-
 * Display the cards on the page - Check!
 *   - shuffle the list of cards using the provided "shuffle" method below - Check! but I changed it because I found a compacter/shorter code
 *   - loop through each card and create its HTML - Check!
 *   - add each card's HTML to the page - Check!
 
+
+* set up the event listener for a card. If a card is clicked:
+*  - display the card's symbol (put this functionality in another function that you call from this one) - Check!
+*  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+*  - if the list already has another card, check to see if the two cards match
+*    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
+*    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
+*    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
+*    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -219,13 +216,4 @@ while (currentIndex !== 0) {
 }
 return cardsArray;
 }
-
-* set up the event listener for a card. If a card is clicked:
-*  - display the card's symbol (put this functionality in another function that you call from this one)
-*  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
-*  - if the list already has another card, check to see if the two cards match
-*    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
-*    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
-*    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
-*    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
 */
