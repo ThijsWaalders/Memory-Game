@@ -144,6 +144,13 @@ grid.addEventListener('click', function (event) {
       if (firstGuess === secondGuess) {
         // then run the match function with a little delay
         setTimeout(match, delay);
+        // write a function to show the winning screen/modal when all 16 cards match
+        // When a user wins the game, a modal appears to congratulate the player and ask if they want to play again. It should also tell the user how much time it took to win the game, and what the star rating was.
+        if (matchCount === 16) {
+          const modal = document.querySelector(".modal");
+          modal.classList.add("win-screen");
+        }
+
       }
       setTimeout(resetGuesses, delay);
     }
@@ -152,16 +159,9 @@ grid.addEventListener('click', function (event) {
 });
 
 
-// write a function to show the winning screen/modal when all 16 cards match
-// When a user wins the game, a modal appears to congratulate the player and ask if they want to play again. It should also tell the user how much time it took to win the game, and what the star rating was.
-if (matchCount === 16) {
-    // create a div for the modal screen and give it a class to style it
-    const winModal = document.createElement('div');
-    winModal.classList.add('win-screen');
-    game.classList.remove('game');
-    deck.appendChild(winModal);
-    matchCount = 0;
-  }
+
+
+
 
 
 
