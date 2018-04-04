@@ -99,7 +99,7 @@ body {
 /* let the matched cards stay rotated */
 .match .back {
   margin: 0;
-  transform: rotate(360deg);
+  transform: rotate(0deg);
 }
 
 .score-panel {
@@ -110,4 +110,13 @@ body {
 .score-panel li  {
   list-style-type: none;
   display: block;
+}
+
+.win-screen {
+  z-index: 1500;
+  background-color: azure;
+  width: 80%;
+  height: 80%;
+  transform: scale(1);
+  opacity: 1;
 }
