@@ -127,6 +127,5 @@ body {
 
 .win-screen {
   visibility: unset;
-  transform: scale(1);
-  /* opacity: 1; */
+  opacity: 1;
 }
