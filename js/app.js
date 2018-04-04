@@ -140,6 +140,12 @@ grid.addEventListener('click', function (event) {
         if (matchCount === 16) {
           setTimeout(modal.classList.add('win-screen'),delayLong);
           console.log("Win screen pops up");
+          // clean all the cards, randomize and replace them in the grid
+          // loop through the cards
+          // gameGrid.forEach(function (item) {
+          //     const name = item.name,
+          //           img = item.img;
+          //           console.log("cards randomized");
           //stop timer ?!?!?!
 
 
@@ -180,10 +186,17 @@ startButton.addEventListener('click',function (){
 
 // onclick eventlistener and function for the restart button
 restartButton.addEventListener('click',function () {
-  startTimer(twoMinutes, display);
-  modalLost.classList.remove('lostscreen');
-  gameGrid;
-})
+  // startTimer(twoMinutes, display);
+  modalLost.classList.remove('lost-screen', 'win-screen');
+  //  remove cards from grid, front and back
+  grid.removeChild(card);
+  card.removeChild(front);
+  card.removeChild(back);
+  //  append card to grid, front and back
+  grid.appendChild(card);
+  card.appendChild(front);
+  card.appendChild(back);
+});
 
 
 
