@@ -157,6 +157,7 @@ if (matchCount === 16) {
     // create a div for the modal screen and give it a class to style it
     const winModal = document.createElement('div');
     winModal.classList.add('win-screen');
+    game.classList.remove('game');
     deck.appendChild(winModal);
     matchCount = 0;
   }
