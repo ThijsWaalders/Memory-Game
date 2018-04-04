@@ -175,7 +175,8 @@ startButton.addEventListener('click',function (){
       display.textContent = minutes + ":" + seconds;
 
       if (--timer < 0) {
-          timer = duration;
+          timer = 0;
+          modalLost.classList.add('lost-screen');
       }
     }, 1000);
   }
