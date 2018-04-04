@@ -55,8 +55,9 @@ let gameGrid = cardsArray.concat(cardsArray).sort(function () {
 let firstGuess = '';
 let secondGuess = '';
 let count = 0;
-var previousTarget = null;
-var delay = 1200;
+const previousTarget = null;
+const delay = 1200;
+const delayLong = 2400;
 let matchCount = 0;
 const modal = document.querySelector(".modal");
 
@@ -69,7 +70,7 @@ game.appendChild(grid);
 
 // loop through the cards
 gameGrid.forEach(function (item) {
-  var name = item.name,
+  const name = item.name,
       img = item.img;
 
   // create the cards with a div and add a class
@@ -78,11 +79,11 @@ gameGrid.forEach(function (item) {
   card.dataset.name = name;
 
   // create frontside
-  var front = document.createElement('div');
+  const front = document.createElement('div');
   front.classList.add('front');
 
   // create backside
-  var back = document.createElement('div');
+  const back = document.createElement('div');
   back.classList.add('back');
   back.style.backgroundImage = 'url(' + img + ')';
 
@@ -94,7 +95,7 @@ gameGrid.forEach(function (item) {
 
 // add class to style selected cards when they match
 const match = function match() {
-  var selected = document.querySelectorAll('.selected');
+  const selected = document.querySelectorAll('.selected');
   selected.forEach(function (card) {
     card.classList.add('match');
     matchCount = matchCount +1;
@@ -102,13 +103,13 @@ const match = function match() {
 };
 
 // reset function after the player selected 2 cards.
-var resetGuesses = function resetGuesses() {
+const resetGuesses = function resetGuesses() {
   firstGuess = '';
   secondGuess = '';
   count = 0;
 
   // remove selection
-  var selected = document.querySelectorAll('.selected');
+  const selected = document.querySelectorAll('.selected');
     selected.forEach(function (card) {
       card.classList.remove('selected');
     });
@@ -148,7 +149,7 @@ grid.addEventListener('click', function (event) {
         // write a function to show the winning screen/modal when all 16 cards match
         // When a user wins the game, a modal appears to congratulate the player and ask if they want to play again. It should also tell the user how much time it took to win the game, and what the star rating was.
         if (matchCount === 16) {
-          setTimeout(modal.classList.add('win-screen'),delay);
+          setTimeout(modal.classList.add('win-screen'),delayLong);
         }
       }
       setTimeout(resetGuesses, delay);
