@@ -148,7 +148,7 @@ grid.addEventListener('click', function (event) {
         // write a function to show the winning screen/modal when all 16 cards match
         // When a user wins the game, a modal appears to congratulate the player and ask if they want to play again. It should also tell the user how much time it took to win the game, and what the star rating was.
         if (matchCount === 16) {
-          modal.classList.add('win-screen');
+          setTimeout(modal.classList.add('win-screen'),delay);
         }
       }
       setTimeout(resetGuesses, delay);
