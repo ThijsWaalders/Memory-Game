@@ -146,8 +146,8 @@ grid.addEventListener('click', function (event) {
           //     const name = item.name,
           //           img = item.img;
           //           console.log("cards randomized");
-          //stop timer ?!?!?!
-
+          //stop timer
+          stopTimer();
 
 
         }
@@ -184,18 +184,32 @@ startButton.addEventListener('click',function (){
   console.log("Game starts now, good luck!");
 });
 
+function stopTimer() {
+  clearInterval();
+}
+
+
+
+// hier verder gaan
+
+
+
 // onclick eventlistener and function for the restart button
 restartButton.addEventListener('click',function () {
   // startTimer(twoMinutes, display);
   modalLost.classList.remove('lost-screen', 'win-screen');
-  //  remove cards from grid, front and back
-  grid.removeChild(card);
-  card.removeChild(front);
-  card.removeChild(back);
-  //  append card to grid, front and back
-  grid.appendChild(card);
-  card.appendChild(front);
-  card.appendChild(back);
+  // stop the timer
+  stopTimer();
+  console.log("stopTimer has been triggered")
+
+  // //  remove cards from grid, front and back
+  // grid.removeChild(card);
+  // card.removeChild(front);
+  // card.removeChild(back);
+  // //  append card to grid, front and back
+  // grid.appendChild(card);
+  // card.appendChild(front);
+  // card.appendChild(back);
 });
 
 

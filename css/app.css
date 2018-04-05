@@ -122,7 +122,7 @@ body {
 }
 
 .modal {
-  background-color: rgb(201, 201, 201)
+  background-color: rgb(201, 201, 201);
   text-align: center;
   margin: auto;
   visibility: hidden;
