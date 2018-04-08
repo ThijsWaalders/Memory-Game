@@ -3,15 +3,16 @@
 <head>
     <meta charset="utf-8">
     <title>Matching Game</title>
-    <meta name="description" content="">
+    <meta name="description" content="Matching Memory game for Google/Udacity's Front End Web Development Nanodegree">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="css/app.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- do I really need jQuery? -->
+    <script src="lib/easytimer/dist/easytimer.min.js"></script>
 </head>
 <body>
 
-    <class="container">
+    <divv class="container">
         <header>
             <h1>Matching Game</h1>
         </header>
@@ -19,9 +20,19 @@
             <div>You only have <span id="time">02:00</span> left!</div>
             <span class="moves">3</span> Moves
             <div class="stars">
-        		<i class="fa fa-star fa-2x"></i>
-        		<i class="fa fa-star fa-2x"></i>
-        		<i class="fa fa-star fa-2x"></i>
+        		<i class="fa fa-star-o fa-2x"></i>
+        		<i class="fa fa-star-o fa-2x"></i>
+        		<i class="fa fa-star-o fa-2x"></i>
+            </div>
+
+            <div id="chronoMeter">
+                <div class="values">00:00:00</div>
+                <div>
+                    <button class="startButton">Start</button>
+                    <button class="pauseButton" >Pause</button>
+                    <button class="stopButton">Stop</button>
+                    <button class="resetButton">Reset</button>
+                </div>
             </div>
 
             <div class="restart">

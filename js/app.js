@@ -158,6 +158,7 @@ grid.addEventListener('click', function (event) {
   }
 });
 
+
 // start the timer and close start screen with a onclick eventlistener added to the start button
 startButton.addEventListener('click',function (){
   function startTimer(duration, display) {
@@ -191,6 +192,29 @@ function stopTimer() {
 
 
 // hier verder gaan
+// Chronometer for time (als ik deze code gebruik haal dan jquery eruit, maar er JS only van)
+let timer = new Timer();
+$('#chronoMeter .startButton').click(function () {
+    timer.start();
+});
+$('#chronoMeter .pauseButton').click(function () {
+    timer.pause();
+});
+$('#chronoMeter .stopButton').click(function () {
+    timer.stop();
+});
+$('#chronoMeter .resetButton').click(function () {
+    timer.reset();
+});
+timer.addEventListener('secondsUpdated', function (e) {
+    $('#chronoMeter .values').html(timer.getTimeValues().toString());
+});
+timer.addEventListener('started', function (e) {
+    $('#chronoMeter .values').html(timer.getTimeValues().toString());
+});
+timer.addEventListener('reset', function (e) {
+    $('#chronoMeter .values').html(timer.getTimeValues().toString());
+});
 
 
 
@@ -200,7 +224,7 @@ restartButton.addEventListener('click',function () {
   modalLost.classList.remove('lost-screen', 'win-screen');
   // stop the timer
   stopTimer();
-  console.log("stopTimer has been triggered")
+  console.log("stopTimer has been triggered");
 
   // //  remove cards from grid, front and back
   // grid.removeChild(card);
