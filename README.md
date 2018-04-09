@@ -1,23 +1,14 @@
 # Memory Game Project
 
-## Table of Contents
-
-* [Instructions](#instructions)
-* [Contributing](#contributing)
-
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
-
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+Here is my memory game. I need to convert from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
 # Memory-Game
 
 ## [Preview here](http://ThijsWaalders.github.io/Memory-Game)
+
+
+###Code Dependencies
+I have followed [this](https://www.taniarascia.com/how-to-create-a-memory-game-super-mario-with-plain-javascript/) tutorial to get the game working.
+I've found many different tutorials, but this one has my attention because it is done in JavaScript only. This seemed to me the best way to learn JS and understtand it.
+After that I have searched for the functions I needed and choose mostly the shortest code, mostly from the Udacity's Slack channels and some code from the legendary [stackoverflow.com](https://www.stackoverflow.com).
