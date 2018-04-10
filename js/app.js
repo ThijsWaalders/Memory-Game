@@ -44,6 +44,7 @@ let previousTarget = null;
 const delay = 1200;
 const delayLong = 2400;
 let matchCount = 0;
+//
 const modal = document.querySelector(".modal");
 const modalLost = document.querySelector(".modal-lost");
 const modalStart = document.querySelector(".modal-start");
@@ -192,7 +193,26 @@ function stopTimer() {
 
 
 // hier verder gaan
-// Chronometer for time (als ik deze code gebruik haal dan jquery eruit, maar er JS only van)
+
+// onclick eventlistener and function for the restart button
+restartButton.addEventListener('click',function (){
+  // startTimer(twoMinutes, display);
+  modalLost.classList.remove('lost-screen', 'win-screen');
+  // stop the timer
+  stopTimer();
+  console.log("stopTimer has been triggered");
+  //  remove cards from grid, front and back
+  grid.removeChild(card);
+  card.removeChild(front);
+  card.removeChild(back);
+  //  append card to grid, front and back
+  grid.appendChild(card);
+  card.appendChild(front);
+  card.appendChild(back);
+});
+
+
+// Chronometer for time (als ik deze code gebruik haal dan jquery eruit, maak er JS only van)
 let timer = new Timer();
 $('#chronoMeter .startButton').click(function () {
     timer.start();
@@ -218,23 +238,7 @@ timer.addEventListener('reset', function (e) {
 
 
 
-// onclick eventlistener and function for the restart button
-restartButton.addEventListener('click',function () {
-  // startTimer(twoMinutes, display);
-  modalLost.classList.remove('lost-screen', 'win-screen');
-  // stop the timer
-  stopTimer();
-  console.log("stopTimer has been triggered");
 
-  // //  remove cards from grid, front and back
-  // grid.removeChild(card);
-  // card.removeChild(front);
-  // card.removeChild(back);
-  // //  append card to grid, front and back
-  // grid.appendChild(card);
-  // card.appendChild(front);
-  // card.appendChild(back);
-});
 
 
 

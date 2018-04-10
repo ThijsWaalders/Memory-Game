@@ -150,8 +150,3 @@ function countStars(moves) {
       }
     }
   }
-
-
-
-
-
