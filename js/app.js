@@ -44,6 +44,7 @@ let previousTarget = null;
 const delay = 1200;
 const delayLong = 2400;
 let matchCount = 0;
+
 //
 const modal = document.querySelector(".modal");
 const modalLost = document.querySelector(".modal-lost");
@@ -188,24 +189,27 @@ startButton.addEventListener('click',function (){
 
 // hier verder gaan
 
-// onclick eventlistener and function for the reset button
 resetButton.addEventListener('click',function (){
-  function startTimer(duration, display){
-  modalLost.classList.remove('lost-screen', 'win-screen');
-  console.log("test");
-  // stop the timer
-  startTimer();
-  console.log("startTimer has been triggered");
-  //  remove cards from grid, front and back
-  grid.removeChild(card);
-  card.removeChild(front);
-  card.removeChild(back);
-  //  append card to grid, front and back
-  grid.appendChild(card);
-  card.appendChild(front);
-  card.appendChild(back);
-  }
+  console.log("Yes het werkt eindelijk!!!!");
 });
+// onclick eventlistener and function for the reset button
+// resetButton.addEventListener('click',function (){
+//   function startTimer(duration, display){
+//   modalLost.classList.remove('lost-screen', 'win-screen');
+//   console.log("test");
+//   // stop the timer
+//   startTimer();
+//   console.log("startTimer has been triggered");
+//   //  remove cards from grid, front and back
+//   grid.removeChild(card);
+//   card.removeChild(front);
+//   card.removeChild(back);
+//   //  append card to grid, front and back
+//   grid.appendChild(card);
+//   card.appendChild(front);
+//   card.appendChild(back);
+//   }
+// });
 
 
             // // Chronometer for time (als ik deze code gebruik haal dan jquery eruit, maak er JS only van)
