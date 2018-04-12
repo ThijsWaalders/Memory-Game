@@ -50,7 +50,7 @@ const modal = document.querySelector(".modal");
 const modalLost = document.querySelector(".modal-lost");
 const modalStart = document.querySelector(".modal-start");
 const startButton = document.querySelector(".start-button");
-const resetButton = document.querySelector(".reset-button");
+const resetButton = document.querySelectorAll(".reset-button");
 
 
 // create grid
@@ -188,29 +188,24 @@ startButton.addEventListener('click',function (){
 });
 
 // hier verder gaan
+// document.addEventListener("click", myFunction);
+
+// function resetButton() {
+//     document.getElementById("demo").innerHTML = "Hello World";
+// }
 
 resetButton.addEventListener('click',function (){
-  console.log("Yes het werkt eindelijk!!!!");
+  function resetButton() {
+  }
 });
-// onclick eventlistener and function for the reset button
-// resetButton.addEventListener('click',function (){
-//   function startTimer(duration, display){
-//   modalLost.classList.remove('lost-screen', 'win-screen');
-//   console.log("test");
-//   // stop the timer
-//   startTimer();
-//   console.log("startTimer has been triggered");
-//   //  remove cards from grid, front and back
-//   grid.removeChild(card);
-//   card.removeChild(front);
-//   card.removeChild(back);
-//   //  append card to grid, front and back
-//   grid.appendChild(card);
-//   card.appendChild(front);
-//   card.appendChild(back);
-//   }
-// });
 
+
+// // onclick eventlistener and function for the reset button
+// resetButton.addEventListener('click',function(){
+//   function reset(){
+//     console.log("Yes het werkt eindelijk!!!!");
+//     }
+// });
 
             // // Chronometer for time (als ik deze code gebruik haal dan jquery eruit, maak er JS only van)
             // let timer = new Timer();
