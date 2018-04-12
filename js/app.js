@@ -160,22 +160,13 @@ grid.addEventListener('click', function (event) {
   }
 });
 
-let playAgain = function() {
-  console.log("hahahaaa");
-  resetGame();
-  modal.css("display", "none");
- };
-
-
-
-
 // start the timer and close start screen with a onclick eventlistener added to the start button
 startButton.addEventListener('click',function (){
   function startTimer(duration, display) {
     let timer = duration, minutes, seconds;
     setInterval(function () {
-      minutes = parseInt(timer / 60, 10);
-      seconds = parseInt(timer % 60, 10);
+      minutes = parseInt(timer / 0, 10); // verander 0 in 60
+      seconds = parseInt(timer % 10, 10); // verander de eerste 10 in 60
 
       minutes = minutes < 10 ? "0" + minutes : minutes;
       seconds = seconds < 10 ? "0" + seconds : seconds;
@@ -188,23 +179,23 @@ startButton.addEventListener('click',function (){
       }
     }, 1000);
   }
-  let twoMinutes = 60 * 2,
+  let twoMinutes = 5 * 2,
       display = document.querySelector('#time');
   startTimer(twoMinutes, display);
   modalStart.classList.remove('start-screen');
   console.log("Game starts now, good luck!");
 });
 
-console.log(test);
 // hier verder gaan
 
 // onclick eventlistener and function for the reset button
 resetButton.addEventListener('click',function (){
-  startTimer(twoMinutes, display);
+  function startTimer(duration, display){
   modalLost.classList.remove('lost-screen', 'win-screen');
+  console.log("test");
   // stop the timer
-  stopTimer();
-  console.log("stopTimer has been triggered");
+  startTimer();
+  console.log("startTimer has been triggered");
   //  remove cards from grid, front and back
   grid.removeChild(card);
   card.removeChild(front);
@@ -213,32 +204,33 @@ resetButton.addEventListener('click',function (){
   grid.appendChild(card);
   card.appendChild(front);
   card.appendChild(back);
+  }
 });
 
 
-// Chronometer for time (als ik deze code gebruik haal dan jquery eruit, maak er JS only van)
-let timer = new Timer();
-$('#chronoMeter .startButton').click(function () {
-    timer.start();
-});
-$('#chronoMeter .pauseButton').click(function () {
-    timer.pause();
-});
-$('#chronoMeter .stopButton').click(function () {
-    timer.stop();
-});
-$('#chronoMeter .resetButton').click(function () {
-    timer.reset();
-});
-timer.addEventListener('secondsUpdated', function (e) {
-    $('#chronoMeter .values').html(timer.getTimeValues().toString());
-});
-timer.addEventListener('started', function (e) {
-    $('#chronoMeter .values').html(timer.getTimeValues().toString());
-});
-timer.addEventListener('reset', function (e) {
-    $('#chronoMeter .values').html(timer.getTimeValues().toString());
-});
+            // // Chronometer for time (als ik deze code gebruik haal dan jquery eruit, maak er JS only van)
+            // let timer = new Timer();
+            // $('#chronoMeter .startButton').click(function () {
+            //     timer.start();
+            // });
+            // $('#chronoMeter .pauseButton').click(function () {
+            //     timer.pause();
+            // });
+            // $('#chronoMeter .stopButton').click(function () {
+            //     timer.stop();
+            // });
+            // $('#chronoMeter .resetButton').click(function () {
+            //     timer.reset();
+            // });
+            // timer.addEventListener('secondsUpdated', function (e) {
+            //     $('#chronoMeter .values').html(timer.getTimeValues().toString());
+            // });
+            // timer.addEventListener('started', function (e) {
+            //     $('#chronoMeter .values').html(timer.getTimeValues().toString());
+            // });
+            // timer.addEventListener('reset', function (e) {
+            //     $('#chronoMeter .values').html(timer.getTimeValues().toString());
+            // });
 
 
 
