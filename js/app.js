@@ -49,7 +49,7 @@ const modal = document.querySelector(".modal");
 const modalLost = document.querySelector(".modal-lost");
 const modalStart = document.querySelector(".modal-start");
 const startButton = document.querySelector(".start-button");
-const restartButton = document.querySelector(".restart-button");
+const resetButton = document.querySelector(".reset-button");
 
 
 // create grid
@@ -135,6 +135,7 @@ grid.addEventListener('click', function (event) {
       // and the first guess matches the second guess
       if (firstGuess === secondGuess) {
         // then run the match function with a little delay
+        console.log("You've got a match!");
         setTimeout(match, delay);
         // write a function to show the winning screen/modal when all 16 cards match
         // When a user wins the game, a modal appears to congratulate the player and ask if they want to play again. It should also tell the user how much time it took to win the game, and what the star rating was.
@@ -158,6 +159,14 @@ grid.addEventListener('click', function (event) {
     previousTarget = clicked;
   }
 });
+
+let playAgain = function() {
+  console.log("hahahaaa");
+  resetGame();
+  modal.css("display", "none");
+ };
+
+
 
 
 // start the timer and close start screen with a onclick eventlistener added to the start button
@@ -186,17 +195,12 @@ startButton.addEventListener('click',function (){
   console.log("Game starts now, good luck!");
 });
 
-function stopTimer() {
-  clearInterval();
-}
-
-
-
+console.log(test);
 // hier verder gaan
 
-// onclick eventlistener and function for the restart button
-restartButton.addEventListener('click',function (){
-  // startTimer(twoMinutes, display);
+// onclick eventlistener and function for the reset button
+resetButton.addEventListener('click',function (){
+  startTimer(twoMinutes, display);
   modalLost.classList.remove('lost-screen', 'win-screen');
   // stop the timer
   stopTimer();
