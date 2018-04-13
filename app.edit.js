@@ -33,11 +33,10 @@ const cardsArray = [{
 },
 ];
 
-// Duplicate the array/cards to get a pair of all 8 cards and then randomize all cards
+//Duplicate the array/cards to get a pair of all 8 cards and then randomize all cards
 let gameGrid = cardsArray.concat(cardsArray).sort(function () {
   return 0.5 - Math.random();
 });
-// declare your variables in the Global Scope
 let firstGuess = '';
 let secondGuess = '';
 let count = 0;
@@ -45,12 +44,14 @@ let previousTarget = null;
 const delay = 1200;
 const delayLong = 2400;
 let matchCount = 0;
-// variables for DOM selection
+
+//
 const modal = document.querySelector(".modal");
 const modalLost = document.querySelector(".modal-lost");
 const modalStart = document.querySelector(".modal-start");
 const startButton = document.querySelector(".start-button");
 const resetButton = document.querySelectorAll(".reset-button");
+
 
 // create grid
 const game = document.getElementById('game');
