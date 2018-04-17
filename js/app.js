@@ -38,13 +38,19 @@ let gameGrid = cardsArray.concat(cardsArray).sort(function () {
   return 0.5 - Math.random();
 });
 // declare your variables in the Global Scope
-let firstGuess = '';
-let secondGuess = '';
-let count = 0;
+let firstGuess = ''; // to compare with secondGuess
+let secondGuess = ''; // to compare with firstGuess
+let count = 0; // Guess counter goes till 2.
 let previousTarget = null;
 const delay = 1200;
 const delayLong = 2400;
-let matchCount = 0;
+let matchCount = 0; // counter for amounth of matches goes till 16
+let moves = ''; // counter for all moves, so 2 cards turned = 1 move
+let stars = document.getElementById('stars');
+const starOne = document.getElementById('star-one'); // Create reference to #stars
+const starTwo = document.getElementById('star-two');
+const starThree = document.getElementById('star-three');
+
 // variables for DOM selection
 const modal = document.querySelector(".modal");
 const modalLost = document.querySelector(".modal-lost");
@@ -105,6 +111,10 @@ const resetGuesses = function resetGuesses() {
     });
 };
 
+/**
+* @description text
+*
+*/
 // add eventlistener to grid to flip the cards when a card is clicked
 grid.addEventListener('click', function (event) {
 
@@ -115,8 +125,8 @@ grid.addEventListener('click', function (event) {
   if (clicked.nodeName === 'SECTION' || clicked === previousTarget || clicked.parentNode.classList.contains('selected')) {
     return;
   }
-
-  //function for matching cards
+  // matching logic
+  // function for matching cards
   if (count < 2) {
     count++;
     if (count === 1) {
@@ -124,7 +134,7 @@ grid.addEventListener('click', function (event) {
       firstGuess = clicked.parentNode.dataset.name;
       console.log(firstGuess);
       clicked.parentNode.classList.add('selected');
-    } else {
+          } else {
       // assign second guess
       secondGuess = clicked.parentNode.dataset.name;
       console.log(secondGuess);
@@ -155,18 +165,34 @@ grid.addEventListener('click', function (event) {
         }
       }
       setTimeout(resetGuesses, delay);
+    } else { // count +1 on moves
+      moves++;
     }
     previousTarget = clicked;
   }
 });
 
-// start the timer and close start screen with a onclick eventlistener added to the start button
+/**
+ * @description Create the star rating
+ */
+if (moves === 3) {
+  stars.removeChild(starThree);
+  console.log("star three removed");
+  // star.getElementById.remove('sta-one');
+  if (moves === 6) {
+    console.log("star two removed");
+    stars.removeChild(starTwo);
+    // star.getElementById.remove('star-two');
+  }
+}
+
+// start the game+timer+add stars and close start screen with a onclick eventlistener added to the start button
 startButton.addEventListener('click',function (){
   function startTimer(duration, display) {
     let timer = duration, minutes, seconds;
     setInterval(function () {
-      minutes = parseInt(timer / 0, 10); // verander 0 in 60
-      seconds = parseInt(timer % 10, 10); // verander de eerste 10 in 60
+      minutes = parseInt(timer / 60, 10); // verander 0 in 60
+      seconds = parseInt(timer % 60, 10); // verander de eerste 10 in 60
 
       minutes = minutes < 10 ? "0" + minutes : minutes;
       seconds = seconds < 10 ? "0" + seconds : seconds;
@@ -179,12 +205,22 @@ startButton.addEventListener('click',function (){
       }
     }, 1000);
   }
-  let twoMinutes = 5 * 2,
+  let twoMinutes = 60 * 2,
       display = document.querySelector('#time');
   startTimer(twoMinutes, display);
   modalStart.classList.remove('start-screen');
   console.log("Game starts now, good luck!");
+  // adds fa-star class to the star elements so the stars will show when de game begins
+  // if (moveCounter === 3) {
+  //   stars.removeChild(starThree);
+  //   console.log("star three removed");
+  // }
+  // if (moveCounter === 6) {
+  //   stars.removeChild(starTwo);
+  //   console.log("star two removed");
+  // }
 });
+
 
 // hier verder gaan
 // document.addEventListener("click", myFunction);
@@ -193,10 +229,10 @@ startButton.addEventListener('click',function (){
 //     document.getElementById("demo").innerHTML = "Hello World";
 // }
 
-resetButton.addEventListener('click',function (){
-  function resetButton() {
-  }
-});
+// resetButton.addEventListener('click',function (){
+//   function resetButton() {
+// ;  }
+// })
 
 
 // // onclick eventlistener and function for the reset button
@@ -206,29 +242,29 @@ resetButton.addEventListener('click',function (){
 //     }
 // });
 
-            // // Chronometer for time (als ik deze code gebruik haal dan jquery eruit, maak er JS only van)
-            // let timer = new Timer();
-            // $('#chronoMeter .startButton').click(function () {
-            //     timer.start();
-            // });
-            // $('#chronoMeter .pauseButton').click(function () {
-            //     timer.pause();
-            // });
-            // $('#chronoMeter .stopButton').click(function () {
-            //     timer.stop();
-            // });
-            // $('#chronoMeter .resetButton').click(function () {
-            //     timer.reset();
-            // });
-            // timer.addEventListener('secondsUpdated', function (e) {
-            //     $('#chronoMeter .values').html(timer.getTimeValues().toString());
-            // });
-            // timer.addEventListener('started', function (e) {
-            //     $('#chronoMeter .values').html(timer.getTimeValues().toString());
-            // });
-            // timer.addEventListener('reset', function (e) {
-            //     $('#chronoMeter .values').html(timer.getTimeValues().toString());
-            // });
+// Chronometer for time (als ik deze code gebruik haal dan jquery eruit, maak er JS only van)
+// let timer = new Timer();
+// $('#chronoMeter .startButton').click(function () {
+//     timer.start();
+// });
+// $('#chronoMeter .pauseButton').click(function () {
+//     timer.pause();
+// });
+// $('#chronoMeter .stopButton').click(function () {
+//     timer.stop();
+// });
+// $('#chronoMeter .resetButton').click(function () {
+//     timer.reset();
+// });
+// timer.addEventListener('secondsUpdated', function (e) {
+//     $('#chronoMeter .values').html(timer.getTimeValues().toString());
+// });
+// timer.addEventListener('started', function (e) {
+//     $('#chronoMeter .values').html(timer.getTimeValues().toString());
+// });
+// timer.addEventListener('reset', function (e) {
+//     $('#chronoMeter .values').html(timer.getTimeValues().toString());
+// });
 
 
 

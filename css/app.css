@@ -8,10 +8,10 @@
 
 header {
   height: 60px;
-  margin-top: -20px;
+  margin-top: -40px;
   text-align: center;
   font-size: 2em;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'Indie Flower', bold;
 }
 
 body {
@@ -108,10 +108,11 @@ body {
 }
 
 .score-panel {
-  text-align: center;
+  text-align: left;
   font-size: 2em;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-
+  font-family: 'Indie Flower', cursive;
+  margin-top: 40px;
+  width: 350px;
 }
 
 .score-panel li  {
@@ -180,8 +181,8 @@ body {
 }
 
 #time {
-  color: rgb(84, 0, 0);
-  font-size: 2em;
+  color: rgb(226, 193, 4);
+  font-size: 1.2em;
 }
 
 .restart {

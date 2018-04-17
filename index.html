@@ -5,7 +5,8 @@
     <title>Matching Game</title>
     <meta name="description" content="Matching Memory game for Google/Udacity's Front End Web Development Nanodegree">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <!-- <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda"> -->
     <link rel="stylesheet" href="css/app.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- do I really need jQuery? -->
     <script src="js/easyTimer.min.js"></script>
@@ -18,13 +19,13 @@
         </header>
         <section class="score-panel">
             <div>You only have <span id="time">02:00</span> left!</div>
-            <span class="moves">3</span> Moves
-            <div class="stars">
-        		<i class="fa fa-star-o fa-2x"></i>
-        		<i class="fa fa-star-o fa-2x"></i>
-        		<i class="fa fa-star-o fa-2x"></i>
+            <span class="moves"></span> Moves    <!-- Are the moves shown? if not, add JS to put it here -->
+            <div id="stars">
+                <div class="fa fa-star" id="star-one"></div>
+                <div class="fa fa-star" id="star-two"></div>
+                <div class="fa fa-star" id="star-three"></div>
             </div>
-
+<!--
             <div id="chronoMeter">
                 <div class="values">00:00:00</div>
                 <div>
@@ -33,7 +34,7 @@
                     <button class="stopButton">Stop</button>
                     <button class="resetButton">Reset</button>
                 </div>
-            </div>
+            </div> -->
 
             <div class="reset">
         		<i class="fa fa-repeat fa-3x"></i>
