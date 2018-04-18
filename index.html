@@ -18,26 +18,17 @@
             <h1>Matching Game</h1>
         </header>
         <section class="score-panel">
-            <div>You only have <span id="time">02:00</span> left!</div>
+            <div id="callbackExample">
+                <div class="values"></div>
+            </div>
             <span class="moves"></span> Moves    <!-- Are the moves shown? if not, add JS to put it here -->
             <div id="stars">
                 <div class="fa fa-star" id="star-one"></div>
                 <div class="fa fa-star" id="star-two"></div>
                 <div class="fa fa-star" id="star-three"></div>
             </div>
-<!--
-            <div id="chronoMeter">
-                <div class="values">00:00:00</div>
-                <div>
-                    <button class="startButton">Start</button>
-                    <button class="pauseButton" >Pause</button>
-                    <button class="stopButton">Stop</button>
-                    <button class="resetButton">Reset</button>
-                </div>
-            </div> -->
-
             <div class="reset">
-        		<i class="fa fa-repeat fa-3x"></i>
+        		<i class="fa fa-repeat"></i>
         	</div>
         </section>
 
@@ -55,7 +46,9 @@
         <div class="modal">
             <h2>Congratulations! You are a winner!</h2><br>
             <button class="reset-button">Play again?</button>
-                <p>
+                <div id="show-timer-score">
+                    <div class="values"></div>
+                </div>
                 <br>
                 It should also tell the user how much time it took to win the game, and what the star rating was.</p>
                 <br>

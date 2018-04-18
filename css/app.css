@@ -108,11 +108,12 @@ body {
 }
 
 .score-panel {
+  padding-top: 20px;
   text-align: left;
   font-size: 2em;
   font-family: 'Indie Flower', cursive;
-  margin-top: 40px;
-  width: 350px;
+  width: 450px;
+  margin: auto;
 }
 
 .score-panel li  {

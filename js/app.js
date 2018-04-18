@@ -142,6 +142,7 @@ grid.addEventListener('click', function (event) {
     }
     // if both guesses are not empty
     if (firstGuess && secondGuess) {
+      starRating();
       // and the first guess matches the second guess
       if (firstGuess === secondGuess) {
         // then run the match function with a little delay
@@ -159,9 +160,10 @@ grid.addEventListener('click', function (event) {
           //           img = item.img;
           //           console.log("cards randomized");
           //stop timer
-          stopTimer();
-
-
+          timer.pause();
+          $('#show-timer-score .values').html(
+            'It took you ' + timer.getTimeValues().toString(['hours', 'minutes', 'seconds']) + ' to win the game with a rating of:'
+        );
         }
       }
       setTimeout(resetGuesses, delay);
@@ -172,105 +174,109 @@ grid.addEventListener('click', function (event) {
   }
 });
 
+
 /**
  * @description Create the star rating
  */
-if (moves === 3) {
-  stars.removeChild(starThree);
-  console.log("star three removed");
-  // star.getElementById.remove('sta-one');
-  if (moves === 6) {
+function starRating (){
+  if (moves === 3) {
+    stars.removeChild(starThree);
+    console.log("star three removed");
+  } else if (moves === 6) {
     console.log("star two removed");
     stars.removeChild(starTwo);
-    // star.getElementById.remove('star-two');
+  } else if (moves === 9) {
+    console.log("star one removed");
+    stars.removeChild(starOne);
   }
 }
 
+var timer = new Timer();
+
+
 // start the game+timer+add stars and close start screen with a onclick eventlistener added to the start button
 startButton.addEventListener('click',function (){
-  function startTimer(duration, display) {
-    let timer = duration, minutes, seconds;
-    setInterval(function () {
-      minutes = parseInt(timer / 60, 10); // verander 0 in 60
-      seconds = parseInt(timer % 60, 10); // verander de eerste 10 in 60
-
-      minutes = minutes < 10 ? "0" + minutes : minutes;
-      seconds = seconds < 10 ? "0" + seconds : seconds;
-
-      display.textContent = minutes + ":" + seconds;
-
-      if (--timer < 0) {
-          timer = 0;
-          modalLost.classList.add('lost-screen');
-      }
-    }, 1000);
-  }
-  let twoMinutes = 60 * 2,
-      display = document.querySelector('#time');
-  startTimer(twoMinutes, display);
   modalStart.classList.remove('start-screen');
   console.log("Game starts now, good luck!");
-  // adds fa-star class to the star elements so the stars will show when de game begins
-  // if (moveCounter === 3) {
-  //   stars.removeChild(starThree);
-  //   console.log("star three removed");
-  // }
-  // if (moveCounter === 6) {
-  //   stars.removeChild(starTwo);
-  //   console.log("star two removed");
-  // }
+  timer.start({callback: function (timer) {
+    $('#callbackExample .values').html(
+        timer.getTimeValues().toString(['hours', 'minutes', 'seconds'])
+    );
+  }});
+  console.log("timer is gestart!");
 });
 
 
-// hier verder gaan
-// document.addEventListener("click", myFunction);
 
-// function resetButton() {
-//     document.getElementById("demo").innerHTML = "Hello World";
+
+
+
+
+  // function startTimer(duration, display) {
+  //   let timer = duration, minutes, seconds;
+  //   setInterval(function () {
+  //     minutes = parseInt(timer / 60, 10); // verander 0 in 60
+  //     seconds = parseInt(timer % 60, 10); // verander de eerste 10 in 60
+
+  //     minutes = minutes < 10 ? "0" + minutes : minutes;
+  //     seconds = seconds < 10 ? "0" + seconds : seconds;
+
+  //     display.textContent = minutes + ":" + seconds;
+
+  //     if (--timer < 0) {
+  //         timer = 0;
+  //         modalLost.classList.add('lost-screen');
+  //     }
+  //   }, 1000);
+  // }
+  // let twoMinutes = 60 * 2,
+  //     display = document.querySelector('#time');
+  // startTimer(twoMinutes, display);
+
+
+
+
+// // ------------------------------------------------------------------------------------
+// // TIMER
+
+// let timeDisplay = document.getElementsByClassName('timer');
+
+// var timer = {
+// 	seconds: 0,
+// 	minutes: 0,
+// 	clearTime: -1
+// };
+
+// //Start timer
+// function startTimer() {
+// 	if (timer.seconds === 59) {
+// 		timer.minutes++;
+// 		timer.seconds = 0;
+// 	} else {
+// 		timer.seconds++;
+// 	}
+
+// 	// Ensure that single digit seconds are preceded with a 0
+// 	let firstSec = "0";
+// 	if (timer.seconds < 10) {
+// 		firstSec += timer.seconds;
+// 	} else {
+// 		firstSec = String(timer.seconds);
+// 	}
+
+// 	let time = String(timer.minutes) + ":" + firstSec;
+// 	$(".timer").text(time);
 // }
 
-// resetButton.addEventListener('click',function (){
-//   function resetButton() {
-// ;  }
-// })
+// // Resets timer state and restarts timer
+// function resetTimer() {
+// 	clearInterval(timer.clearTime);
+// 	timer.seconds = 0;
+// 	timer.minutes = 0;
+// 	$(".timer").text("0:00");
 
-
-// // onclick eventlistener and function for the reset button
-// resetButton.addEventListener('click',function(){
-//   function reset(){
-//     console.log("Yes het werkt eindelijk!!!!");
-//     }
-// });
-
-// Chronometer for time (als ik deze code gebruik haal dan jquery eruit, maak er JS only van)
-// let timer = new Timer();
-// $('#chronoMeter .startButton').click(function () {
-//     timer.start();
-// });
-// $('#chronoMeter .pauseButton').click(function () {
-//     timer.pause();
-// });
-// $('#chronoMeter .stopButton').click(function () {
-//     timer.stop();
-// });
-// $('#chronoMeter .resetButton').click(function () {
-//     timer.reset();
-// });
-// timer.addEventListener('secondsUpdated', function (e) {
-//     $('#chronoMeter .values').html(timer.getTimeValues().toString());
-// });
-// timer.addEventListener('started', function (e) {
-//     $('#chronoMeter .values').html(timer.getTimeValues().toString());
-// });
-// timer.addEventListener('reset', function (e) {
-//     $('#chronoMeter .values').html(timer.getTimeValues().toString());
-// });
-
-
-
-
-
-
+// 	timer.clearTime = setInterval(startTimer, 1000);
+// }
 
 /*
 1. create an array to hold the cards - Check!
