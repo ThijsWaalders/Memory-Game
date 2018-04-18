@@ -48,17 +48,19 @@ let matchCount = 0; // counter for amounth of matches goes till 16
 let move = document.getElementById('move');
 let moves = 0; // counter for all moves, so 2 cards turned = 1 move
 let stars = document.getElementById('stars');
+let starCounter = 0;
 const starOne = document.getElementById('star-one'); // Create reference to #stars
 const starTwo = document.getElementById('star-two');
 const starThree = document.getElementById('star-three');
 let timer = new Timer();
 
+
 // variables for DOM selection
+const scorePanel = document.querySelector(".score-panel");
 const modal = document.querySelector(".modal");
 const modalLost = document.querySelector(".modal-lost");
 const modalStart = document.querySelector(".modal-start");
 const startButton = document.querySelector(".start-button");
-const resetButton = document.querySelectorAll(".reset-button");
 
 // create grid
 const game = document.getElementById('game');
@@ -155,7 +157,13 @@ grid.addEventListener('click', function (event) {
         // write a function to show the winning screen/modal when all 16 cards match
         // When a user wins the game, a modal appears to congratulate the player and ask if they want to play again. It should also tell the user how much time it took to win the game, and what the star rating was.
         if (matchCount === 16) {
-          setTimeout(modal.classList.add('win-screen'),delayLong);
+          // clone html from scorepanel to a variable
+          // scorePanel.appendChild(results);
+          // clone scoreboard into results variable to show the results on the modal
+          // let results = document.getElementsByClassName('score-panel').innerHTML;
+          // document.createElement('results');
+          // document.getElementsByClassName(results).appendChild(results);
+          setTimeout(modal.classList.add('win-screen'), delayLong);
           console.log("Win screen pops up");
           // clean all the cards, randomize and replace them in the grid
           // loop through the cards
@@ -166,8 +174,9 @@ grid.addEventListener('click', function (event) {
           //stop timer
           timer.pause();
           $('#show-timer-score .values').html(
-            'It took you ' + timer.getTimeValues().toString(['hours', 'minutes', 'seconds']) + ' to win the game with a rating of:'
-        );
+            'It took you ' + timer.getTimeValues().toString(['hours', 'minutes', 'seconds']) + ' to win the game with a rating of:');
+            grid.removeEventListener('click', event);
+            console.log("removeEventListener from grid, now you can't click the cards");
         }
       }
       setTimeout(resetGuesses, delay);
@@ -185,13 +194,16 @@ grid.addEventListener('click', function (event) {
 function starRating (){
   if (moves === 3) {
     stars.removeChild(starThree);
+    starCounter++;
     console.log("star three removed");
   } else if (moves === 6) {
-    console.log("star two removed");
     stars.removeChild(starTwo);
+    starCounter++;
+    console.log("star two removed");
   } else if (moves === 9) {
-    console.log("star one removed");
     stars.removeChild(starOne);
+    starCounter++;
+    console.log("star one removed");
   }
 }
 
@@ -199,7 +211,7 @@ function starRating (){
 
 // start the game+timer+add stars and close start screen with a onclick eventlistener added to the start button
 startButton.addEventListener('click',function (){
-  modalStart.classList.remove('start-screen');
+  modalStart.classList.remove('start-screen', 'modal', 'modal-lost', 'win-screen');
   console.log("Game starts now, good luck!");
   timer.start({callback: function (timer) {
     $('#callbackExample .values').html(
@@ -208,6 +220,10 @@ startButton.addEventListener('click',function (){
   }});
   console.log("timer is gestart!");
 });
+
+//
+// hier verder gaan
+//
 
 
 
