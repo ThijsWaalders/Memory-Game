@@ -45,11 +45,13 @@ let previousTarget = null;
 const delay = 1200;
 const delayLong = 2400;
 let matchCount = 0; // counter for amounth of matches goes till 16
-let moves = ''; // counter for all moves, so 2 cards turned = 1 move
+let move = document.getElementById('move');
+let moves = 0; // counter for all moves, so 2 cards turned = 1 move
 let stars = document.getElementById('stars');
 const starOne = document.getElementById('star-one'); // Create reference to #stars
 const starTwo = document.getElementById('star-two');
 const starThree = document.getElementById('star-three');
+let timer = new Timer();
 
 // variables for DOM selection
 const modal = document.querySelector(".modal");
@@ -139,6 +141,8 @@ grid.addEventListener('click', function (event) {
       secondGuess = clicked.parentNode.dataset.name;
       console.log(secondGuess);
       clicked.parentNode.classList.add('selected');
+      // set innerText to moves
+      move.innerText = moves;
     }
     // if both guesses are not empty
     if (firstGuess && secondGuess) {
@@ -191,7 +195,6 @@ function starRating (){
   }
 }
 
-var timer = new Timer();
 
 
 // start the game+timer+add stars and close start screen with a onclick eventlistener added to the start button
@@ -200,11 +203,13 @@ startButton.addEventListener('click',function (){
   console.log("Game starts now, good luck!");
   timer.start({callback: function (timer) {
     $('#callbackExample .values').html(
-        timer.getTimeValues().toString(['hours', 'minutes', 'seconds'])
+        timer.getTimeValues().toString(['minutes', 'seconds'])
     );
   }});
   console.log("timer is gestart!");
 });
+
+
 
 
 
