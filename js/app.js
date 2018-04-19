@@ -66,6 +66,7 @@ let timer = new Timer();
 const scorePanel = document.querySelector(".score-panel");
 const modal = document.querySelector(".modal-done");
 const modalStart = document.querySelector(".modal-start");
+const modaldone = document.querySelector(".modal-done");
 const startButton = document.querySelectorAll(".start-button");
 
 // create grid
@@ -218,6 +219,7 @@ function starRating (){
 for (let i = 0; i < startButton.length; i++) {
   startButton[i].addEventListener('click',function () {
     modalStart.classList.add('hidden');
+    modalDone.classList.add('hidden');
     console.log("Game starts now, good luck!");
     timer.start({callback: function (timer) {
       $('#callbackExample .values').html(
