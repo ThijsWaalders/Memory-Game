@@ -58,6 +58,7 @@ const starThree = document.getElementById('star-three');
 const starOneModal = document.getElementById('star-one-modal'); // Create reference to #stars on the modal screen
 const starTwoModal = document.getElementById('star-two-modal');
 const starThreeModal = document.getElementById('star-three-modal');
+const deck = document.getElementById('game');
 
 // var for timer
 let timer = new Timer();
@@ -88,14 +89,15 @@ gameGrid.forEach(function (item) {
   card.classList.add('card');
   card.dataset.name = name;
 
-  // create frontside
-  const front = document.createElement('div');
-  front.classList.add('front');
-
   // create backside
   const back = document.createElement('div');
   back.classList.add('back');
   back.style.backgroundImage = 'url(' + img + ')';
+
+  // create frontside
+  const front = document.createElement('div');
+  front.classList.add('front');
+  back.classList.add('back');
 
   //  append card to grid, front and back
   grid.appendChild(card);
@@ -171,12 +173,11 @@ grid.addEventListener('click', function (event) {
         // When a user wins the game, a modal appears to congratulate the player and ask if they want to play again. It should also tell the user how much time it took to win the game, and what the star rating was.
         if (matchCount === 16) {
           setTimeout(modal.classList.remove('hidden'), delayLong);
+          deck.classList.add('hidden');
           console.log("Win screen pops up");
           timer.pause();
           $('#show-timer-score .values').html(
             'It took you ' + timer.getTimeValues().toString(['hours', 'minutes', 'seconds']) + ' to win the game with a total of ' + moves + ' moves ' + 'and your star rating is: ');
-            grid.removeEventListener('click', event);
-            console.log("removeEventListener from grid, now you can't click the cards");
         }
       }
       setTimeout(resetGuesses, delay);
@@ -220,6 +221,7 @@ for (let i = 0; i < startButton.length; i++) {
   startButton[i].addEventListener('click',function () {
     modalStart.classList.add('hidden');
     modalDone.classList.add('hidden');
+    deck.classList.remove('hidden');
     console.log("Game starts now, good luck!");
     timer.start({callback: function (timer) {
       $('#callbackExample .values').html(
