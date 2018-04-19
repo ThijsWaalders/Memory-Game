@@ -60,7 +60,8 @@ const scorePanel = document.querySelector(".score-panel");
 const modal = document.querySelector(".modal");
 const modalLost = document.querySelector(".modal-lost");
 const modalStart = document.querySelector(".modal-start");
-const startButton = document.querySelector(".start-button");
+
+// const refresh = location.reload();
 
 // create grid
 const game = document.getElementById('game');
@@ -207,28 +208,44 @@ function starRating (){
   }
 }
 
-
-
-// start the game+timer+add stars and close start screen with a onclick eventlistener added to the start button
-startButton.addEventListener('click',function (){
-  modalStart.classList.remove('start-screen', 'modal', 'modal-lost', 'win-screen');
-  console.log("Game starts now, good luck!");
-  timer.start({callback: function (timer) {
-    $('#callbackExample .values').html(
-        timer.getTimeValues().toString(['minutes', 'seconds'])
-    );
-  }});
-  console.log("timer is gestart!");
-});
-
 //
 // hier verder gaan
 //
 
 
+// Loop over the startButtons (start and restart) to add the eventlistener
+// for the buttons to start/reset the game and start the timer
+for (let i = 0; i < startButton.length; i++) {
+  startButton[i].addEventListener('click',function () {
+    modalStart.classList.remove('start-screen', 'modal', 'modal-lost', 'win-screen');
+    console.log("Game starts now, good luck!");
+    timer.start({callback: function (timer) {
+      $('#callbackExample .values').html(
+        timer.getTimeValues().toString(['minutes', 'seconds'])
+      );
+    }});
+    console.log("timer is gestart!");
+    });
+}
+
+
+// startButton[0].addEventListener('click',function (){
+//   modalStart.classList.remove('start-screen', 'modal', 'modal-lost', 'win-screen');
+//   console.log("Game starts now, good luck!");
+//   timer.start({callback: function (timer) {
+//     $('#callbackExample .values').html(
+//         timer.getTimeValues().toString(['minutes', 'seconds'])
+//     );
+//   }});
+//   console.log("timer is gestart!");
+// });
 
 
 
+
+// show amount of stars on the modal screen
+
+// show total moves on modal
 
 
 
