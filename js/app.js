@@ -37,7 +37,8 @@ const cardsArray = [{
 let gameGrid = cardsArray.concat(cardsArray).sort(function () {
   return 0.5 - Math.random();
 });
-// declare your variables in the Global Scope
+
+// Declare variables in the Global Scope
 let firstGuess = ''; // to compare with secondGuess
 let secondGuess = ''; // to compare with firstGuess
 let count = 0; // Guess counter goes till 2.
@@ -45,15 +46,21 @@ let previousTarget = null;
 const delay = 1200;
 const delayLong = 2400;
 let matchCount = 0; // counter for amounth of matches goes till 16
-let move = document.getElementsByClassName('move');
+const move = document.getElementById('move');
+const moveModal = document.getElementById('move-modal');
 let moves = 0; // counter for all moves, so 2 cards turned = 1 move
-let stars = document.getElementById('stars');
+const stars = document.getElementById('stars');
+const starsModal = document.getElementById('stars-modal');
 let starCounter = 0;
 const starOne = document.getElementById('star-one'); // Create reference to #stars
 const starTwo = document.getElementById('star-two');
 const starThree = document.getElementById('star-three');
-let timer = new Timer();
+const starOneModal = document.getElementById('star-one-modal'); // Create reference to #stars
+const starTwoModal = document.getElementById('star-two-modal');
+const starThreeModal = document.getElementById('star-three-modal');
 
+// var for timer
+let timer = new Timer();
 
 // variables for DOM selection
 const scorePanel = document.querySelector(".score-panel");
@@ -70,6 +77,9 @@ const grid = document.createElement('section');
 grid.setAttribute('class', 'grid');
 game.appendChild(grid);
 
+/**
+ * @description Loop over all cards to create/shuffle/place them on the grid
+ */
 // loop through the cards
 gameGrid.forEach(function (item) {
   const name = item.name,
@@ -104,7 +114,9 @@ const match = function match() {
   });
 };
 
-// reset function after the player selected 2 cards.
+/**
+ * @description Reset function after the player selected 2 cards.
+ */
 const resetGuesses = function resetGuesses() {
   firstGuess = '';
   secondGuess = '';
@@ -118,7 +130,7 @@ const resetGuesses = function resetGuesses() {
 };
 
 /**
-* @description text
+* @description Eventlistener for the cards
 *
 */
 // add eventlistener to grid to flip the cards when a card is clicked
@@ -146,6 +158,7 @@ grid.addEventListener('click', function (event) {
       console.log(secondGuess);
       clicked.parentNode.classList.add('selected');
       // set innerText to moves
+      move.innerText = moves;
       move.innerText = moves;
     }
     // if both guesses are not empty
@@ -176,7 +189,7 @@ grid.addEventListener('click', function (event) {
           //stop timer
           timer.pause();
           $('#show-timer-score .values').html(
-            'It took you ' + timer.getTimeValues().toString(['hours', 'minutes', 'seconds']) + ' to win the game with a rating of ' + 'and a total of ' + '<span class="move">0</span> moves');
+            'It took you ' + timer.getTimeValues().toString(['hours', 'minutes', 'seconds']) + ' to win the game with a total of ' + moves + ' moves ' + 'and your star rating is: ');
             grid.removeEventListener('click', event);
             console.log("removeEventListener from grid, now you can't click the cards");
         }
@@ -189,170 +202,43 @@ grid.addEventListener('click', function (event) {
   }
 });
 
-
 /**
- * @description Create the star rating
+ * @description Create the star rating: loop over the moves variable and remove one or more stars
  */
 function starRating (){
   if (moves === 3) {
     stars.removeChild(starThree);
+    starsModal.removeChild(starThreeModal);
     starCounter++;
     console.log("star three removed");
   } else if (moves === 6) {
     stars.removeChild(starTwo);
+    starsModal.removeChild(starTwoModal);
     starCounter++;
     console.log("star two removed");
   } else if (moves === 9) {
     stars.removeChild(starOne);
+    starsModal.removeChild(starOneModal);
     starCounter++;
     console.log("star one removed");
   }
 }
-
+/**
+ * @description Loop over the startButtons (start and restart) to add the eventlistener for the buttons to start/reset the game and start the timer
+ */
 //
-// hier verder gaan
 //
-
-
-// Loop over the startButtons (start and restart) to add the eventlistener
-// for the buttons to start/reset the game and start the timer
+// this gives me a jshint warning: Functions declared within loops referencing an outer scoped variable may lead to confusing semantics. (W083)
+// but in dev tools it works ok without errors, I don't know if that is ok? Would be nice to have a comment about that
 for (let i = 0; i < startButton.length; i++) {
   startButton[i].addEventListener('click',function () {
-    modalStart.classList.remove('start-screen', 'modal', 'modal-lost', 'win-screen');
-    console.log("Game starts now, good luck!");
+        console.log("Game starts now, good luck!");
     timer.start({callback: function (timer) {
       $('#callbackExample .values').html(
         timer.getTimeValues().toString(['minutes', 'seconds'])
       );
     }});
     console.log("timer is gestart!");
-    });
+    modalStart.classList.remove('start-screen', 'modal', 'modal-lost', 'win-screen');
+  });
 }
-
-
-// startButton[0].addEventListener('click',function (){
-//   modalStart.classList.remove('start-screen', 'modal', 'modal-lost', 'win-screen');
-//   console.log("Game starts now, good luck!");
-//   timer.start({callback: function (timer) {
-//     $('#callbackExample .values').html(
-//         timer.getTimeValues().toString(['minutes', 'seconds'])
-//     );
-//   }});
-//   console.log("timer is gestart!");
-// });
-
-
-
-
-// show amount of stars on the modal screen
-
-// show total moves on modal
-
-
-
-
-  // function startTimer(duration, display) {
-  //   let timer = duration, minutes, seconds;
-  //   setInterval(function () {
-  //     minutes = parseInt(timer / 60, 10); // verander 0 in 60
-  //     seconds = parseInt(timer % 60, 10); // verander de eerste 10 in 60
-
-  //     minutes = minutes < 10 ? "0" + minutes : minutes;
-  //     seconds = seconds < 10 ? "0" + seconds : seconds;
-
-  //     display.textContent = minutes + ":" + seconds;
-
-  //     if (--timer < 0) {
-  //         timer = 0;
-  //         modalLost.classList.add('lost-screen');
-  //     }
-  //   }, 1000);
-  // }
-  // let twoMinutes = 60 * 2,
-  //     display = document.querySelector('#time');
-  // startTimer(twoMinutes, display);
-
-
-
-
-// // ------------------------------------------------------------------------------------
-// // TIMER
-
-// let timeDisplay = document.getElementsByClassName('timer');
-
-// var timer = {
-// 	seconds: 0,
-// 	minutes: 0,
-// 	clearTime: -1
-// };
-
-// //Start timer
-// function startTimer() {
-// 	if (timer.seconds === 59) {
-// 		timer.minutes++;
-// 		timer.seconds = 0;
-// 	} else {
-// 		timer.seconds++;
-// 	}
-
-// 	// Ensure that single digit seconds are preceded with a 0
-// 	let firstSec = "0";
-// 	if (timer.seconds < 10) {
-// 		firstSec += timer.seconds;
-// 	} else {
-// 		firstSec = String(timer.seconds);
-// 	}
-
-// 	let time = String(timer.minutes) + ":" + firstSec;
-// 	$(".timer").text(time);
-// }
-
-// // Resets timer state and restarts timer
-// function resetTimer() {
-// 	clearInterval(timer.clearTime);
-// 	timer.seconds = 0;
-// 	timer.minutes = 0;
-// 	$(".timer").text("0:00");
-
-// 	timer.clearTime = setInterval(startTimer, 1000);
-// }
-
-/*
-1. create an array to hold the cards - Check!
-2. change the  name of the array in the shuffle function to the list array - Check! (used a smaller peace of code than the given one)
-3. create a loop that loops true each card and create it's html and stop at the last one - Check!
-
-
-* Create a list that holds all of your cards - sort of check? I only see 1 <ul></ul> with all the cards
-
-
-* Display the cards on the page - Check!
-*   - shuffle the list of cards using the provided "shuffle" method below - Check! but I changed it because I found a compacter/shorter code
-*   - loop through each card and create its HTML - Check!
-*   - add each card's HTML to the page - Check!
-
-
-* set up the event listener for a card. If a card is clicked:
-*  - display the card's symbol (put this functionality in another function that you call from this one) - Check!
-*  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
-*  - if the list already has another card, check to see if the two cards match
-*    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
-*    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
-*    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
-*    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
-
-
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(cardsArray) {
-var currentIndex = cardsArray.length,
-  temporaryValue, randomIndex;
-while (currentIndex !== 0) {
-  randomIndex = Math.floor(Math.random() * currentIndex);
-  currentIndex -= 1;
-  temporaryValue = cardsArray[currentIndex];
-  cardsArray[currentIndex] = cardsArray[randomIndex];
-  cardsArray[randomIndex] = temporaryValue;
-}
-return cardsArray;
-}
-*/
