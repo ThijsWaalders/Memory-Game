@@ -66,7 +66,7 @@ let timer = new Timer();
 const scorePanel = document.querySelector(".score-panel");
 const modal = document.querySelector(".modal-done");
 const modalStart = document.querySelector(".modal-start");
-const modaldone = document.querySelector(".modal-done");
+const modalDone = document.querySelector(".modal-done");
 const startButton = document.querySelectorAll(".start-button");
 
 // create grid
