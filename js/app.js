@@ -45,7 +45,7 @@ let previousTarget = null;
 const delay = 1200;
 const delayLong = 2400;
 let matchCount = 0; // counter for amounth of matches goes till 16
-let move = document.getElementById('move');
+let move = document.getElementsByClassName('move');
 let moves = 0; // counter for all moves, so 2 cards turned = 1 move
 let stars = document.getElementById('stars');
 let starCounter = 0;
@@ -60,6 +60,7 @@ const scorePanel = document.querySelector(".score-panel");
 const modal = document.querySelector(".modal");
 const modalLost = document.querySelector(".modal-lost");
 const modalStart = document.querySelector(".modal-start");
+const startButton = document.querySelectorAll(".start-button");
 
 // const refresh = location.reload();
 
@@ -175,7 +176,7 @@ grid.addEventListener('click', function (event) {
           //stop timer
           timer.pause();
           $('#show-timer-score .values').html(
-            'It took you ' + timer.getTimeValues().toString(['hours', 'minutes', 'seconds']) + ' to win the game with a rating of:');
+            'It took you ' + timer.getTimeValues().toString(['hours', 'minutes', 'seconds']) + ' to win the game with a rating of ' + 'and a total of ' + '<span class="move">0</span> moves');
             grid.removeEventListener('click', event);
             console.log("removeEventListener from grid, now you can't click the cards");
         }
