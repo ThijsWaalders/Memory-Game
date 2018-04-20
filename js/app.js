@@ -173,15 +173,19 @@ grid.addEventListener('click', function (event) {
         if (matchCount === 16) {
           deck.classList.add('hidden');
           console.log("matchCount = 16!");
-          setTimeout(modal.classList.remove('hidden'),delay);
+          setTimeout(modal.classList.remove('hidden'),delayLong);
           console.log("Win screen pops up");
           timer.pause();
           $('#show-timer-score .values').html(
             'It took you ' + timer.getTimeValues().toString(['hours', 'minutes', 'seconds']) + ' to win the game with a total of ' + moves + ' moves ' + 'and your star rating is: ');
+            const cardSwap = document.getElementsByClassName('card');
+            cardSwap.classList.remove('selected');
+            cardSwap.classList.add('back');
         }
       }
       setTimeout(resetGuesses, delay);
-    } else { // count +1 on moves
+    } else {
+      // count +1 on moves
       moves++;
     }
     previousTarget = clicked;
@@ -192,17 +196,17 @@ grid.addEventListener('click', function (event) {
  * @description Create the star rating: loop over the moves variable and remove one or more stars
  */
 function starRating (){
-  if (moves === 3) {
+  if (moves === 8) {
     stars.removeChild(starThree);
     starsModal.removeChild(starThreeModal);
     starCounter++;
     console.log("star three removed");
-  } else if (moves === 6) {
+  } else if (moves === 16) {
     stars.removeChild(starTwo);
     starsModal.removeChild(starTwoModal);
     starCounter++;
     console.log("star two removed");
-  } else if (moves === 9) {
+  } else if (moves === 34) {
     stars.removeChild(starOne);
     starsModal.removeChild(starOneModal);
     starCounter++;

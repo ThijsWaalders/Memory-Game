@@ -11,12 +11,17 @@ header {
   margin-top: -40px;
   text-align: center;
   font-size: 1.8em;
-  font-family: 'Indie Flower', bold;
+  font-family: 'Montez', cursive;
+}
+
+h2 {
+  font-family: 'Montez', cursive;
 }
 
 body {
   margin: 20px 0;
   background: #6589F9;
+  font-family: 'Averia Serif Libre';
 }
 
 .grid {
@@ -40,7 +45,11 @@ body {
   background: -webkit-linear-gradient(-45deg, #E5E83A 0%, #C5347F 100%);
   background: linear-gradient(135deg, #E5E83A 0%, #C5347F 100%);
   visibility: unset;
-}
+  /* used cssmatic.combos-shadow to create fast and simple shadowbox */
+  -webkit-box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
+  -moz-box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
+  box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
+  }
 
 .card {
   cursor: pointer;
@@ -50,14 +59,14 @@ body {
   position: relative;
   transition: all .4s linear;
   transform-style: preserve-3d;
-  border-radius: 50%;
+  border-radius: 7px;
 }
 
 .back,
 .front {
     position: absolute;
     backface-visibility: hidden;
-    border-radius: 50%;
+    border-radius: 7px;
 }
 
 /* front of the card (backside in real life) has a question mark */
@@ -112,32 +121,42 @@ body {
 }
 
 .modal-start {
-  padding: 50px;
+  border-radius: 7px;
+  padding: 10px;
   text-align: center;
   margin: auto;
   background-color: azure;
-  width: 60%;
-  height: 50%;
+  width: 40%;
+  height: 30%;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   visibility: unset;
   opacity: 1;
+  /* used cssmatic.combos-shadow to create fast and simple shadowbox */
+  -webkit-box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
+  -moz-box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
+  box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
 }
 
 .modal-done {
-  background-color: rgb(201, 201, 201);
+  border-radius: 7px;
   text-align: center;
   margin: auto;
   visibility: unset;
   background-color: azure;
-  width: 60%;
-  height: 50%;
+  min-width: 400px;
+  height: 350px;
+  padding: 10px;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  /* used cssmatic.combos-shadow to create fast and simple shadowbox */
+  -webkit-box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
+  -moz-box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
+  box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
 }
 
 .hidden {
@@ -147,4 +166,8 @@ body {
 #time {
   color: rgb(226, 193, 4);
   font-size: 1.2em;
+}
+
+.start-button {
+  cursor: pointer;
 }

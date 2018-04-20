@@ -5,7 +5,8 @@
     <title>Memory Game</title>
     <meta name="description" content="Matching Memory game for Google/Udacity's Front End Web Development Nanodegree">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Averia+Serif+Libre" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montez" rel="stylesheet">
     <link rel="stylesheet" href="css/app.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- needed for the timer -->
     <script src="js/easyTimer.min.js"></script>
@@ -36,26 +37,24 @@
         </ul>
 
         <div class="modal-start">
-            <h2>Welcome!</h2><br>
-            <p>Pick a set of 2 cards, do they match?</p>
+            <h2>Welcome!</h><br>
+            <h4>Pick a set of 2 cards, do they match?</h4>
             <br>
-             <button class="start-button">START!</button>
-            <p>A start button allows the player to restart the game board, the timer, and the star rating.</p>
+            <i class="fa fa-play fa-5x start-button"></i>
         </div>
 
         <div class="modal-done hidden">
             <h2>Congratulations!</h2><br>
                 <div id="show-timer-score">
                     <div class="values">&NonBreakingSpace;</div>
-                </div>
+                </div><br>
                 <div id="stars-modal">
                 <div class="fa fa-star" id="star-one-modal"></div>
                 <div class="fa fa-star" id="star-two-modal"></div>
                 <div class="fa fa-star" id="star-three-modal"></div>
             </div>
-            <br>
-            <br>
-            <button class="start-button">Play again?</button>
+            <p>Play again?</p>
+            <i class="fa fa-play fa-5x start-button"></i>
         </div>
     </div>
     <script src="js/app.js"></script>
