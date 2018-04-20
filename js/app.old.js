@@ -89,13 +89,16 @@ gameGrid.forEach(function (item) {
   card.classList.add('card');
   card.dataset.name = name;
 
-  // create frontside
-  const front = document.createElement('div');
-  front.classList.add('front');
   // create backside
   const back = document.createElement('div');
   back.classList.add('back');
   back.style.backgroundImage = 'url(' + img + ')';
+
+  // create frontside
+  const front = document.createElement('div');
+  front.classList.add('front');
+  back.classList.add('back');
+
   //  append card to grid, front and back
   grid.appendChild(card);
   card.appendChild(front);
@@ -156,8 +159,7 @@ grid.addEventListener('click', function (event) {
       clicked.parentNode.classList.add('selected');
       // set innerText to moves
       move.innerText = moves;
-      move.innerText = moves;
-    }
+      }
     // if both guesses are not empty
     if (firstGuess && secondGuess) {
       starRating();
@@ -165,20 +167,23 @@ grid.addEventListener('click', function (event) {
       if (firstGuess === secondGuess) {
         // then run the match function with a little delay
         console.log("You've got a match!");
-        setTimeout(match, delay);
+        setTimeout(match(), delay);
         // write a function to show the winning screen/modal when all 16 cards match
         // When a user wins the game, a modal appears to congratulate the player and ask if they want to play again. It should also tell the user how much time it took to win the game, and what the star rating was.
         if (matchCount === 16) {
-          setTimeout(modal.classList.remove('hidden'), delayLong);
           deck.classList.add('hidden');
+          console.log("matchCount = 16!");
+          setTimeout(modal.classList.remove('hidden'),delayLong);
           console.log("Win screen pops up");
           timer.pause();
           $('#show-timer-score .values').html(
             'It took you ' + timer.getTimeValues().toString(['hours', 'minutes', 'seconds']) + ' to win the game with a total of ' + moves + ' moves ' + 'and your star rating is: ');
+
         }
       }
       setTimeout(resetGuesses, delay);
-    } else { // count +1 on moves
+    } else {
+      // count +1 on moves
       moves++;
     }
     previousTarget = clicked;
@@ -189,17 +194,17 @@ grid.addEventListener('click', function (event) {
  * @description Create the star rating: loop over the moves variable and remove one or more stars
  */
 function starRating (){
-  if (moves === 3) {
+  if (moves === 8) {
     stars.removeChild(starThree);
     starsModal.removeChild(starThreeModal);
     starCounter++;
     console.log("star three removed");
-  } else if (moves === 6) {
+  } else if (moves === 16) {
     stars.removeChild(starTwo);
     starsModal.removeChild(starTwoModal);
     starCounter++;
     console.log("star two removed");
-  } else if (moves === 9) {
+  } else if (moves === 34) {
     stars.removeChild(starOne);
     starsModal.removeChild(starOneModal);
     starCounter++;
