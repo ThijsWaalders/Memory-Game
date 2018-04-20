@@ -130,76 +130,86 @@ const resetGuesses = function resetGuesses() {
 * @description Eventlistener for the cards
 *
 */
-// add eventlistener to grid to flip the cards when a card is clicked
-grid.addEventListener('click', function (event) {
+function gameInit() {
+    // add eventlistener to grid to flip the cards when a card is clicked
+    grid.addEventListener('click', function (event) {
 
-  // event target is the clicked item
-  let clicked = event.target;
+    // event target is the clicked item
+    let clicked = event.target;
 
-  // Do not allow the grid section to get selected, only the divs inside the grid
-  if (clicked.nodeName === 'SECTION' || clicked === previousTarget || clicked.parentNode.classList.contains('selected')) {
-    return;
-  }
-  // matching logic
-  // function for matching cards
-  if (count < 2) {
-    count++;
-    if (count === 1) {
-      // assign first guess
-      firstGuess = clicked.parentNode.dataset.name;
-      console.log(firstGuess);
-      clicked.parentNode.classList.add('selected');
-          } else {
-      // assign second guess
-      secondGuess = clicked.parentNode.dataset.name;
-      console.log(secondGuess);
-      clicked.parentNode.classList.add('selected');
-      // set innerText to moves
-      move.innerText = moves;
-      move.innerText = moves;
+    // Do not allow the grid section to get selected, only the divs inside the grid
+    if (clicked.nodeName === 'SECTION' || clicked === previousTarget || clicked.parentNode.classList.contains('selected')) {
+        return;
     }
-    // if both guesses are not empty
-    if (firstGuess && secondGuess) {
-      starRating();
-      // and the first guess matches the second guess
-      if (firstGuess === secondGuess) {
-        // then run the match function with a little delay
-        console.log("You've got a match!");
-        setTimeout(match, delay);
-        // write a function to show the winning screen/modal when all 16 cards match
-        // When a user wins the game, a modal appears to congratulate the player and ask if they want to play again. It should also tell the user how much time it took to win the game, and what the star rating was.
-        if (matchCount === 16) {
-          setTimeout(modal.classList.remove('hidden'), delayLong);
-          deck.classList.add('hidden');
-          console.log("Win screen pops up");
-          timer.pause();
-          $('#show-timer-score .values').html(
-            'It took you ' + timer.getTimeValues().toString(['hours', 'minutes', 'seconds']) + ' to win the game with a total of ' + moves + ' moves ' + 'and your star rating is: ');
+    // matching logic
+    // function for matching cards
+    if (count < 2) {
+        count++;
+        if (count === 1) {
+        // assign first guess
+        firstGuess = clicked.parentNode.dataset.name;
+        console.log(firstGuess);
+        clicked.parentNode.classList.add('selected');
+            } else {
+        // assign second guess
+        secondGuess = clicked.parentNode.dataset.name;
+        console.log(secondGuess);
+        clicked.parentNode.classList.add('selected');
+        // set innerText to moves
+        move.innerText = moves;
         }
-      }
-      setTimeout(resetGuesses, delay);
-    } else { // count +1 on moves
-      moves++;
+        // if both guesses are not empty
+        if (firstGuess && secondGuess) {
+        starRating();
+        // and the first guess matches the second guess
+        if (firstGuess === secondGuess) {
+            // then run the match function with a little delay
+            console.log("You've got a match!");
+            setTimeout(match(), delay);
+            // write a function to show the winning screen/modal when all 16 cards match
+            // When a user wins the game, a modal appears to congratulate the player and ask if they want to play again. It should also tell the user how much time it took to win the game, and what the star rating was.
+            if (matchCount === 16) {
+                setTimeout(match(), delay);
+                setTimeout(modal.classList.remove('hidden'), delayLong);
+                const cardElement = document.querySelectorAll('.card');
+                //  append card to grid, front and back
+                cardElement.remove('.card');console.log('cardClear');
+                // clicked = "";
+                // previousTarget = "";
+                // cardClear.classList.remove('selected', 'match', 'front', 'back');console.log("all .selected and .match classes cleared");
+                deck.classList.add('hidden');console.log('remove deck');
+                console.log("Win screen pops up");
+                timer.pause();
+                $('#show-timer-score .values').html(
+                    'It took you ' + timer.getTimeValues().toString(['hours', 'minutes', 'seconds']) + ' to win the game with a total of ' + moves + ' moves ' + 'and your star rating is: ');
+                    gameInit();
+            }
+        }
+        setTimeout(resetGuesses, delay);
+        } else { // count +1 on moves
+        moves++;
+        }
+        previousTarget = clicked;
     }
-    previousTarget = clicked;
-  }
-});
+    });
+}
+gameInit();
 
 /**
  * @description Create the star rating: loop over the moves variable and remove one or more stars
  */
 function starRating (){
-  if (moves === 3) {
+  if (moves === 8) {
     stars.removeChild(starThree);
     starsModal.removeChild(starThreeModal);
     starCounter++;
     console.log("star three removed");
-  } else if (moves === 6) {
+  } else if (moves === 16) {
     stars.removeChild(starTwo);
     starsModal.removeChild(starTwoModal);
     starCounter++;
     console.log("star two removed");
-  } else if (moves === 9) {
+  } else if (moves === 34) {
     stars.removeChild(starOne);
     starsModal.removeChild(starOneModal);
     starCounter++;
@@ -216,6 +226,7 @@ function starRating (){
 // but in dev tools it works ok without errors, I don't know if that is ok? Would be nice to have a comment about that
 for (let i = 0; i < startButton.length; i++) {
   startButton[i].addEventListener('click',function () {
+    gameInit();
     modalStart.classList.add('hidden');
     modalDone.classList.add('hidden');
     deck.classList.remove('hidden');
