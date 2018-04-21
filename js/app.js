@@ -76,6 +76,43 @@ const grid = document.createElement('section');
 grid.setAttribute('class', 'grid');
 game.appendChild(grid);
 
+// add class to style selected cards when they match
+const match = function match() {
+  const selected = document.querySelectorAll('.selected');
+  selected.forEach(function (card) {
+    card.classList.add('match');
+    matchCount = matchCount +1;
+  });
+};
+
+/**
+ * @description Reset function after the player selected 2 cards.
+ */
+const resetGuesses = function resetGuesses() {
+  firstGuess = '';
+  secondGuess = '';
+  count = 0;
+
+  // remove selection
+  const selected = document.querySelectorAll('.selected');
+    selected.forEach(function (card) {
+      card.classList.remove('selected');
+    });
+};
+
+/**
+ * @description Reset function to set all values to zero
+ */
+const resetGame = function resetGame(){
+  moves = 0;
+  starCounter = 0;
+  matchCount = 0;
+  count = 0;
+  firstGuess = '';
+  secondGuess = '';
+  move.innerText = moves;
+};
+
 /**
  * @description Loop over all cards to create/shuffle/place them on the grid
  */
@@ -101,30 +138,6 @@ gameGrid.forEach(function (item) {
   card.appendChild(front);
   card.appendChild(back);
 });
-
-// add class to style selected cards when they match
-const match = function match() {
-  const selected = document.querySelectorAll('.selected');
-  selected.forEach(function (card) {
-    card.classList.add('match');
-    matchCount = matchCount +1;
-  });
-};
-
-/**
- * @description Reset function after the player selected 2 cards.
- */
-const resetGuesses = function resetGuesses() {
-  firstGuess = '';
-  secondGuess = '';
-  count = 0;
-
-  // remove selection
-  const selected = document.querySelectorAll('.selected');
-    selected.forEach(function (card) {
-      card.classList.remove('selected');
-    });
-};
 
 /**
 * @description Eventlistener for the cards
@@ -169,11 +182,20 @@ function gameInit() {
             // write a function to show the winning screen/modal when all 16 cards match
             // When a user wins the game, a modal appears to congratulate the player and ask if they want to play again. It should also tell the user how much time it took to win the game, and what the star rating was.
             if (matchCount === 16) {
-                setTimeout(match(), delay);
-                setTimeout(modal.classList.remove('hidden'), delayLong);
-                const cardElement = document.querySelectorAll('.card');
-                //  append card to grid, front and back
-                cardElement.remove('.card');console.log('cardClear');
+                console.log("matchCount = 16");
+                setTimeout(match(), delay);console.log("setTimeout match delay");
+                setTimeout(modal.classList.remove('hidden'), delayLong); console.log("SetTimeout modal");
+                // remove classes from cards
+                const clearGame = function clearGame() {
+                  const cardElements = document.querySelectorAll('.card');
+                  cardElements.forEach(function (card) {
+                    card.classList.remove('selected', 'match', 'front', 'back');
+                  });clearGame();
+                };console.log("game deck clear");
+
+                // const cardElement = document.querySelectorAll('.card');console.log("const cardElement");
+                // //  remove card from grid, front and back
+                // cardElement.classList.remove('card');console.log('cardClear');console.log("cardElement.remove");
                 // clicked = "";
                 // previousTarget = "";
                 // cardClear.classList.remove('selected', 'match', 'front', 'back');console.log("all .selected and .match classes cleared");
@@ -182,7 +204,7 @@ function gameInit() {
                 timer.pause();
                 $('#show-timer-score .values').html(
                     'It took you ' + timer.getTimeValues().toString(['hours', 'minutes', 'seconds']) + ' to win the game with a total of ' + moves + ' moves ' + 'and your star rating is: ');
-                    gameInit();
+                setTimeout(resetGuesses, delay);
             }
         }
         setTimeout(resetGuesses, delay);
@@ -193,7 +215,6 @@ function gameInit() {
     }
     });
 }
-gameInit();
 
 /**
  * @description Create the star rating: loop over the moves variable and remove one or more stars
@@ -226,11 +247,13 @@ function starRating (){
 // but in dev tools it works ok without errors, I don't know if that is ok? Would be nice to have a comment about that
 for (let i = 0; i < startButton.length; i++) {
   startButton[i].addEventListener('click',function () {
+    resetGame();
     gameInit();
     modalStart.classList.add('hidden');
     modalDone.classList.add('hidden');
     deck.classList.remove('hidden');
     console.log("Game starts now, good luck!");
+    timer.stop();
     timer.start({callback: function (timer) {
       $('#callbackExample .values').html(
         timer.getTimeValues().toString(['minutes', 'seconds'])

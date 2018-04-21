@@ -39,7 +39,7 @@ body {
   margin: auto;
   padding: 15px;
   border-radius: 10px;
-  max-width: 960px;
+  max-width: 720px;
   background: #E5E83A;
   background: -moz-linear-gradient(-45deg, #E5E83A 0%, #C5347F 100%);
   background: -webkit-linear-gradient(-45deg, #E5E83A 0%, #C5347F 100%);
@@ -115,18 +115,37 @@ body {
 .score-panel li  {
   position: relative;
   list-style-type: none;
-  margin: 0;
   padding: 0;
   overflow: hidden;
 }
 
+#move {
+  margin: auto;
+}
+
+#stars {
+  display: inline-block;
+  position: relative;
+  margin: auto;
+  padding: 0;
+}
+
+#restart-button {
+margin: auto;
+}
+
+#callbackExample {
+  margin: auto;
+}
+
+
 .modal-start {
   border-radius: 7px;
-  padding: 10px;
+  padding: 30px;
   text-align: center;
   margin: auto;
   background-color: azure;
-  width: 40%;
+  width: 30%;
   height: 30%;
   position: fixed;
   top: 50%;
