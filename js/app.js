@@ -99,20 +99,7 @@ const resetGuesses = function resetGuesses() {
       card.classList.remove('selected');
     });
 };
-
-/**
- * @description Reset function to set all values to zero
- */
-const resetGame = function resetGame(){
-  moves = 0;
-  starCounter = 0;
-  matchCount = 0;
-  count = 0;
-  firstGuess = '';
-  secondGuess = '';
-  move.innerText = moves;
-};
-
+const card = document.createElement('div');
 /**
  * @description Loop over all cards to create/shuffle/place them on the grid
  */
@@ -138,6 +125,20 @@ gameGrid.forEach(function (item) {
   card.appendChild(front);
   card.appendChild(back);
 });
+
+/**
+ * @description Reset function to set all values to zero
+ */
+const resetGame = function resetGame(){
+  moves = 0;
+  starCounter = 0;
+  matchCount = 0;
+  count = 0;
+  firstGuess = '';
+  secondGuess = '';
+  move.innerText = moves;
+  deck.classList.remove('selected', 'match', 'front', 'back');
+};
 
 /**
 * @description Eventlistener for the cards
@@ -185,26 +186,29 @@ function gameInit() {
                 console.log("matchCount = 16");
                 setTimeout(match(), delay);console.log("setTimeout match delay");
                 setTimeout(modal.classList.remove('hidden'), delayLong); console.log("SetTimeout modal");
-                // remove classes from cards
-                const clearGame = function clearGame() {
-                  const cardElements = document.querySelectorAll('.card');
-                  cardElements.forEach(function (card) {
-                    card.classList.remove('selected', 'match', 'front', 'back');
-                  });clearGame();
-                };console.log("game deck clear");
-
-                // const cardElement = document.querySelectorAll('.card');console.log("const cardElement");
-                // //  remove card from grid, front and back
-                // cardElement.classList.remove('card');console.log('cardClear');console.log("cardElement.remove");
-                // clicked = "";
-                // previousTarget = "";
-                // cardClear.classList.remove('selected', 'match', 'front', 'back');console.log("all .selected and .match classes cleared");
-                deck.classList.add('hidden');console.log('remove deck');
+                                // // remove classes from cards
+                                // const clearGame = function clearGame() {
+                                //   const cardElements = document.querySelectorAll('.card');
+                                //   cardElements.forEach(function (card) {
+                                //     card.classList.remove('selected', 'match', 'front', 'back');
+                                //   });clearGame();
+                                // };console.log("game deck clear");
+                                // const cardElement = document.querySelectorAll('.card');console.log("const cardElement");
+                                // //  remove card from grid, front and back
+                                // cardElement.classList.remove('card');console.log('cardClear');console.log("cardElement.remove");
+                                // clicked = "";
+                                // previousTarget = "";
+                                // cardClear.classList.remove('selected', 'match', 'front', 'back');console.log("all .selected and .match classes cleared");
+                const element = document.querySelectorAll(".card");
+                      element.classList.remove("card");
+                      deck.classList.add('hidden');console.log('remove deck');
+                      // document.getElementsByClassName('card').classList.remove('selected', 'match', 'front', 'back');
                 console.log("Win screen pops up");
                 timer.pause();
                 $('#show-timer-score .values').html(
                     'It took you ' + timer.getTimeValues().toString(['hours', 'minutes', 'seconds']) + ' to win the game with a total of ' + moves + ' moves ' + 'and your star rating is: ');
                 setTimeout(resetGuesses, delay);
+                clicked.parentNode.classList.remove('selected');
             }
         }
         setTimeout(resetGuesses, delay);
@@ -238,6 +242,15 @@ function starRating (){
   }
 }
 
+// function clearDeck () {
+//   // remove classes from cards
+//   const clearGame = function clearGame() {
+//     const deckElement = document.querySelectorAll('.cards');
+//     deckElements.innerHTML = '';
+//   };console.log("game deck clear");
+// }
+
+
 /**
  * @description Loop over the startButtons (start and restart) to add the eventlistener for the buttons to start/reset the game and start the timer
  */
@@ -248,7 +261,10 @@ function starRating (){
 for (let i = 0; i < startButton.length; i++) {
   startButton[i].addEventListener('click',function () {
     resetGame();
-    gameInit();
+    // document.getElementById('game').innerHTML = "";
+    // resetGame();console.log('game reset');
+    // clearDeck();
+    setTimeout(gameInit(),delay);console.log('game clear');
     modalStart.classList.add('hidden');
     modalDone.classList.add('hidden');
     deck.classList.remove('hidden');
