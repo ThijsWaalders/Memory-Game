@@ -103,11 +103,6 @@ const resetGuesses = function resetGuesses() {
       card.classList.remove('selected');
     });
 };
-// const card = document.createElement('div');
-/**
- * @description Loop over all cards to create/shuffle/place them on the grid
- */
-
 
 /**
  * @description Reset function to set all values to zero
@@ -124,7 +119,9 @@ const resetGame = function resetGame(){
 };
 
 /**
-* @description Eventlistener for the cards
+* @description Loop over all cards to create/shuffle/place them on the grid and add 
+
+Eventlistener for the cards
 *
 */
 function gameInit() {
@@ -134,16 +131,9 @@ function gameInit() {
   gameGrid.forEach(function (item) {
     const name = item.name,
     img = item.img;
-  // for (let i = 0; i < 16; i++) {
-  //   selectGrid.removeChild(selectCard);
-  //   // grid.removeChild('.card');
-  // console.log('old card removed');
-  // }
-  // create the cards with a div and add a class
   const card = document.createElement('div');
   card.classList.add('card');
   card.dataset.name = name;
-
   // create frontside
   const front = document.createElement('div');
   front.classList.add('front');
@@ -173,10 +163,8 @@ function gameInit() {
 );
     // add eventlistener to grid to flip the cards when a card is clicked
     grid.addEventListener('click', function (event) {
-
     // event target is the clicked item
     let clicked = event.target;
-
     // Do not allow the grid section to get selected, only the divs inside the grid
     if (clicked.nodeName === 'SECTION' || clicked === previousTarget || clicked.parentNode.classList.contains('selected')) {
         return;
@@ -205,7 +193,7 @@ function gameInit() {
         if (firstGuess === secondGuess) {
             // then run the match function with a little delay
             console.log("You've got a match!");
-            setTimeout(match(), delay);
+            match();
             // write a function to show the winning screen/modal when all 16 cards match
             // When a user wins the game, a modal appears to congratulate the player and ask if they want to play again. It should also tell the user how much time it took to win the game, and what the star rating was.
             if (matchCount === 16) {
@@ -233,16 +221,6 @@ function gameInit() {
     }
     });
 }
-// remove cards when restart
-// function removeOldCards() {
-//   deck.innerHTML = "";
-// }
-// const allCards = document.getElementById('game');
-// function removeCards() {
-//   for (var i = 0; i < allCards.length; i++) {
-//     allCards[i].removeChild(card);
-//   }
-// }
 
 /**
  * @description Create the star rating: loop over the moves variable and remove one or more stars
@@ -269,8 +247,6 @@ function starRating (){
 /**
  * @description Loop over the startButtons (start and restart) to add the eventlistener for the buttons to start/reset the game and start the timer
  */
-//
-//
 // this gives me a jshint warning: Functions declared within loops referencing an outer scoped variable may lead to confusing semantics. (W083)
 // but in dev tools it works ok without errors, I don't know if that is ok? Would be nice to have a comment about that
 for (let i = 0; i < startButton.length; i++) {

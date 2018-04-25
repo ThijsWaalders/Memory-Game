@@ -87,11 +87,9 @@ body {
 /* Selected items will be rotated */
 .selected {
     transform: rotateY(180deg);
-    border-radius: 50%;
   }
 
 .match .front {
-  border-radius: 50%;
   visibility: hidden;
 }
 
