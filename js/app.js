@@ -59,6 +59,7 @@ const starOneModal = document.getElementById('star-one-modal'); // Create refere
 const starTwoModal = document.getElementById('star-two-modal');
 const starThreeModal = document.getElementById('star-three-modal');
 const deck = document.getElementById('game');
+const cards = document.getElementsByClassName('card');
 
 
 // var for timer
@@ -71,6 +72,7 @@ const modalStart = document.querySelector(".modal-start");
 const modalDone = document.querySelector(".modal-done");
 const startButton = document.querySelectorAll(".start-button");
 const selectGrid = document.querySelector(".grid");
+const selectCard = document.querySelectorAll(".card");
 
 // create grid
 const game = document.getElementById('game');
@@ -126,18 +128,19 @@ const resetGame = function resetGame(){
 *
 */
 function gameInit() {
-  // loop through the cards
-gameGrid.forEach(function (item) {
-  const name = item.name,
-      img = item.img;
   // check if there are old cards and delete them
+  grid.innerHTML = "";
+  // loop through the cards
+  gameGrid.forEach(function (item) {
+    const name = item.name,
+    img = item.img;
   // for (let i = 0; i < 16; i++) {
-  // grid.removeChild(card);
+  //   selectGrid.removeChild(selectCard);
+  //   // grid.removeChild('.card');
   // console.log('old card removed');
   // }
   // create the cards with a div and add a class
   const card = document.createElement('div');
-
   card.classList.add('card');
   card.dataset.name = name;
 
@@ -230,13 +233,16 @@ gameGrid.forEach(function (item) {
     }
     });
 }
-// remove classnames from cards when restart
-const allCards = document.getElementsByClassName('card');
-function removeCards() {
-  for (var i = 0; i < allCards.length; i++) {
-    allCards[i].classList.remove('match', 'selected', 'back');
-  }
-}
+// remove cards when restart
+// function removeOldCards() {
+//   deck.innerHTML = "";
+// }
+// const allCards = document.getElementById('game');
+// function removeCards() {
+//   for (var i = 0; i < allCards.length; i++) {
+//     allCards[i].removeChild(card);
+//   }
+// }
 
 /**
  * @description Create the star rating: loop over the moves variable and remove one or more stars
@@ -270,10 +276,7 @@ function starRating (){
 for (let i = 0; i < startButton.length; i++) {
   startButton[i].addEventListener('click',function () {
     resetGame();
-    // document.getElementById('game').innerHTML = "";
-    // resetGame();console.log('game reset');
-    // clearDeck();
-    setTimeout(gameInit(),delay);console.log('game clear');
+    setTimeout(gameInit(),delayLong);console.log('game clear');
     document.getElementById('score_board').classList.remove('hidden');
     modalStart.classList.add('hidden');
     modalDone.classList.add('hidden');
