@@ -187,22 +187,11 @@ function gameInit() {
                 console.log("matchCount = 16");
                 setTimeout(match(), delay);console.log("setTimeout match delay");
                 setTimeout(modal.classList.remove('hidden'), delayLong); console.log("SetTimeout modal");
-                                // // remove classes from cards
-                                // const clearGame = function clearGame() {
-                                //   const cardElements = document.querySelectorAll('.card');
-                                //   cardElements.forEach(function (card) {
-                                //     card.classList.remove('selected', 'match', 'front', 'back');
-                                //   });clearGame();
-                                // };console.log("game deck clear");
-                                // const cardElement = document.querySelectorAll('.card');console.log("const cardElement");
-                                // //  remove card from grid, front and back
-                                // cardElement.classList.remove('card');console.log('cardClear');console.log("cardElement.remove");
-                                // clicked = "";
-                                // previousTarget = "";
-                                // cardClear.classList.remove('selected', 'match', 'front', 'back');console.log("all .selected and .match classes cleared");
-                      deck.classList.remove("card");
-                      deck.classList.add('hidden');console.log('remove deck');
-                      // document.getElementsByClassName('card').classList.remove('selected', 'match', 'front', 'back');
+                // clearCards();
+                resetGuesses();
+                deck.classList.remove("card");
+                deck.classList.add('hidden');console.log('remove deck');
+                // document.getElementsByClassName('card').classList.remove('selected', 'match', 'front', 'back');
                 console.log("Win screen pops up");
                 timer.pause();
                 $('#show-timer-score .values').html(
@@ -219,6 +208,13 @@ function gameInit() {
     }
     });
 }
+function clearCards(){
+  document.getElementById('game').innerHTML = "";
+  const cards = document.getElementsByClassName('card');
+                  cards.forEach(card => {
+                        cards[card].classList.remove('selected', 'match', 'front', 'back');
+                });
+              }
 
 /**
  * @description Create the star rating: loop over the moves variable and remove one or more stars
@@ -261,6 +257,7 @@ function starRating (){
 for (let i = 0; i < startButton.length; i++) {
   startButton[i].addEventListener('click',function () {
     resetGame();
+    gameInit();
     // document.getElementById('game').innerHTML = "";
     // resetGame();console.log('game reset');
     // clearDeck();
