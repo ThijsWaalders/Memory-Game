@@ -118,7 +118,7 @@ const resetGame = function resetGame(){
 };
 
 /**
-* @description Loop over all cards to create/shuffle/place them on the grid and add 
+* @description Loop over all cards to create/shuffle/place them on the grid and add
 
 Eventlistener for the cards
 *
@@ -145,19 +145,35 @@ function gameInit() {
   card.appendChild(front);
   card.appendChild(back);
   // remove old stars
-  stars.removeChild(starThree);console.log('starThree removed');
-  starsModal.removeChild(starThreeModal);console.log('starThreeModal removed');
-  stars.removeChild(starTwo);console.log('starTwo removed');
-  starsModal.removeChild(starTwoModal);console.log('starTwoModal removed');
-  stars.removeChild(starOne);console.log('starOne removed');
-  starsModal.removeChild(starOneModal);console.log('starOneModal removed');
-  // add stars
-  stars.appendChild(starThree);console.log('starThree added');
-  starsModal.appendChild(starThreeModal);console.log('starThreeModal added');
-  stars.appendChild(starTwo);console.log('starTwo added');
-  starsModal.appendChild(starTwoModal);console.log('starTwoModal added');
-  stars.appendChild(starOne);console.log('starOne added');
-  starsModal.appendChild(starOneModal);console.log('starOneModal added');
+  // if(stars === parentNode.starThree) {
+  //   stars.removeChild(starThree);
+  // }
+  // if (stars.hasChildNodes()) {
+  //   // It has at least one
+  //   // starThree.classList.remove('fa fa-star');
+  //   // .removeChild(starThree);console.log('starThree removed');
+  // }
+  starThree.classList.add('fa-star');
+  starTwo.classList.add('fa-star');
+  starOne.classList.add('fa-star');
+
+  // starThree.classList.remove(fa, fa-star);
+  // starTwo.classList.remove(fa, fa-star);
+  // starOne.classList.remove(fa, fa-star);
+  // stars.classList.add(starThree);console.log('starThree added');
+
+  // starsModal.removeChild(starThreeModal);console.log('starThreeModal removed');
+  // stars.removeChild(starTwo);console.log('starTwo removed');
+  // starsModal.removeChild(starTwoModal);console.log('starTwoModal removed');
+  // stars.removeChild(starOne);console.log('starOne removed');
+  // starsModal.removeChild(starOneModal);console.log('starOneModal removed');
+  // // add stars
+  // stars.appendChild(starThree);console.log('starThree added');
+  // starsModal.appendChild(starThreeModal);console.log('starThreeModal added');
+  // stars.appendChild(starTwo);console.log('starTwo added');
+  // starsModal.appendChild(starTwoModal);console.log('starTwoModal added');
+  // stars.appendChild(starOne);console.log('starOne added');
+  // starsModal.appendChild(starOneModal);console.log('starOneModal added');
   }
 );
     // add eventlistener to grid to flip the cards when a card is clicked
@@ -200,7 +216,6 @@ function gameInit() {
                 setTimeout(match(), delay);console.log("setTimeout match delay");
                 setTimeout(modal.classList.remove('hidden'), delayLong); console.log("SetTimeout modal");
                 resetGuesses();
-                removeCards();
                 deck.classList.add('hidden');console.log('remove deck');
                 document.getElementById('score_board').classList.add('hidden');
                 console.log("Win screen pops up");
@@ -225,18 +240,18 @@ function gameInit() {
  */
 function starRating (){
   if (moves === 8) {
-    stars.removeChild(starThree);
-    starsModal.removeChild(starThreeModal);
+    starThree.classList.remove('fa-star');
+    starThreeModal.classList.remove('fa-star');
     starCounter++;
     console.log("star three removed");
   } else if (moves === 16) {
-    stars.removeChild(starTwo);
-    starsModal.removeChild(starTwoModal);
+    starTwo.classList.remove('fa-star');
+    starTwoModal.classList.remove('fa-star');
     starCounter++;
     console.log("star two removed");
   } else if (moves === 34) {
-    stars.removeChild(starOne);
-    starsModal.removeChild(starOneModal);
+    starOne.classList.remove('fa-star');
+    starOneModal.classList.remove('fa-star');
     starCounter++;
     console.log("star one removed");
   }
