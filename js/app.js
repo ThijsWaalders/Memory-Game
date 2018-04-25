@@ -196,8 +196,9 @@ function gameInit() {
                 // selectGrid.removeChild('.card');
                 // This gives us a live `HTMLCollection`
 
-                // removeCards();
+                removeCards();
                 deck.classList.add('hidden');console.log('remove deck');
+                document.getElementById('score_board').classList.add('hidden');
                 // document.getElementsByClassName('card').classList.remove('selected', 'match', 'front', 'back');
                 console.log("Win screen pops up");
                 timer.pause();
@@ -217,11 +218,17 @@ function gameInit() {
 }
 // remove classnames from cards when restart
 const allCards = document.getElementsByClassName('card');
-function removeCards () {
-  while (allCards[0]) {
-    allCards[0].classList.remove('match', 'selected', 'back');
+function removeCards() {
+  for (var i = 0; i < allCards.length; i++) {
+    allCards[i].classList.remove('match', 'selected', 'back');
   }
 }
+
+// function removeCards () {
+//   while (allCards[16]) {
+//     allCards[16].classList.remove('match', 'selected', 'back');
+//   }
+// }
 
 // function clearCards(){
 //   // document.getElementById('game').innerHTML = "";
@@ -277,6 +284,7 @@ for (let i = 0; i < startButton.length; i++) {
     // resetGame();console.log('game reset');
     // clearDeck();
     setTimeout(gameInit(),delay);console.log('game clear');
+    document.getElementById('score_board').classList.remove('hidden');
     modalStart.classList.add('hidden');
     modalDone.classList.add('hidden');
     deck.classList.remove('hidden');
