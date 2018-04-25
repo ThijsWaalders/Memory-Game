@@ -72,7 +72,8 @@ body {
 /* front of the card (backside in real life) has a question mark */
 .front {
     background: #FAB942 url('../img/question.png') no-repeat center center / contain;
-    background-origin:padding-box; padding: 50%;    /*werkt niet??*/
+    background-origin:padding-box;
+    padding: 50%;    /*werkt niet??*/
     background-size: 20%;
   }
 
@@ -96,8 +97,13 @@ body {
 /* let the matched cards stay rotated */
 .match .back {
   margin: 0;
-  transform: rotate(0deg);
+  transform: rotateY(360deg);
 }
+
+/* .card .selected .match {
+  visibility: visible;
+  transform: rotateY(0deg);
+} */
 
 .score-panel {
   padding: 15px;
