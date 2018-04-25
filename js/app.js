@@ -105,28 +105,7 @@ const resetGuesses = function resetGuesses() {
 /**
  * @description Loop over all cards to create/shuffle/place them on the grid
  */
-// loop through the cards
-gameGrid.forEach(function (item) {
-  const name = item.name,
-      img = item.img;
 
-  // create the cards with a div and add a class
-  const card = document.createElement('div');
-  card.classList.add('card');
-  card.dataset.name = name;
-
-  // create frontside
-  const front = document.createElement('div');
-  front.classList.add('front');
-  // create backside
-  const back = document.createElement('div');
-  back.classList.add('back');
-  back.style.backgroundImage = 'url(' + img + ')';
-  //  append card to grid, front and back
-  grid.appendChild(card);
-  card.appendChild(front);
-  card.appendChild(back);
-});
 
 /**
  * @description Reset function to set all values to zero
@@ -147,6 +126,48 @@ const resetGame = function resetGame(){
 *
 */
 function gameInit() {
+  // loop through the cards
+gameGrid.forEach(function (item) {
+  const name = item.name,
+      img = item.img;
+  // check if there are old cards and delete them
+  // for (let i = 0; i < 16; i++) {
+  // grid.removeChild(card);
+  // console.log('old card removed');
+  // }
+  // create the cards with a div and add a class
+  const card = document.createElement('div');
+
+  card.classList.add('card');
+  card.dataset.name = name;
+
+  // create frontside
+  const front = document.createElement('div');
+  front.classList.add('front');
+  // create backside
+  const back = document.createElement('div');
+  back.classList.add('back');
+  back.style.backgroundImage = 'url(' + img + ')';
+  //  append card to grid, front and back
+  grid.appendChild(card);
+  card.appendChild(front);
+  card.appendChild(back);
+  // remove old stars
+  stars.removeChild(starThree);console.log('starThree removed');
+  starsModal.removeChild(starThreeModal);console.log('starThreeModal removed');
+  stars.removeChild(starTwo);console.log('starTwo removed');
+  starsModal.removeChild(starTwoModal);console.log('starTwoModal removed');
+  stars.removeChild(starOne);console.log('starOne removed');
+  starsModal.removeChild(starOneModal);console.log('starOneModal removed');
+  // add stars
+  stars.appendChild(starThree);console.log('starThree added');
+  starsModal.appendChild(starThreeModal);console.log('starThreeModal added');
+  stars.appendChild(starTwo);console.log('starTwo added');
+  starsModal.appendChild(starTwoModal);console.log('starTwoModal added');
+  stars.appendChild(starOne);console.log('starOne added');
+  starsModal.appendChild(starOneModal);console.log('starOneModal added');
+  }
+);
     // add eventlistener to grid to flip the cards when a card is clicked
     grid.addEventListener('click', function (event) {
 
@@ -190,16 +211,9 @@ function gameInit() {
                 setTimeout(modal.classList.remove('hidden'), delayLong); console.log("SetTimeout modal");
                 // clearCards();
                 resetGuesses();
-                // const cards = document.getElementsByClassName('card');
-                // $(".card").removeClass('match', 'selected', 'back');
-                // $(".card").addClass('front');
-                // selectGrid.removeChild('.card');
-                // This gives us a live `HTMLCollection`
-
                 removeCards();
                 deck.classList.add('hidden');console.log('remove deck');
                 document.getElementById('score_board').classList.add('hidden');
-                // document.getElementsByClassName('card').classList.remove('selected', 'match', 'front', 'back');
                 console.log("Win screen pops up");
                 timer.pause();
                 $('#show-timer-score .values').html(
@@ -224,20 +238,6 @@ function removeCards() {
   }
 }
 
-// function removeCards () {
-//   while (allCards[16]) {
-//     allCards[16].classList.remove('match', 'selected', 'back');
-//   }
-// }
-
-// function clearCards(){
-//   // document.getElementById('game').innerHTML = "";
-  // const cards = document.getElementsByClassName('card');
-//     for (let i = 0; i < cards.length; i++) {
-//       cards[card].classList.remove('selected', 'match', 'front', 'back');
-//     }
-// }
-
 /**
  * @description Create the star rating: loop over the moves variable and remove one or more stars
  */
@@ -260,15 +260,6 @@ function starRating (){
   }
 }
 
-// function clearDeck () {
-//   // remove classes from cards
-//   const clearGame = function clearGame() {
-//     const deckElement = document.querySelectorAll('.cards');
-//     deckElements.innerHTML = '';
-//   };console.log("game deck clear");
-// }
-
-
 /**
  * @description Loop over the startButtons (start and restart) to add the eventlistener for the buttons to start/reset the game and start the timer
  */
@@ -279,7 +270,6 @@ function starRating (){
 for (let i = 0; i < startButton.length; i++) {
   startButton[i].addEventListener('click',function () {
     resetGame();
-    gameInit();
     // document.getElementById('game').innerHTML = "";
     // resetGame();console.log('game reset');
     // clearDeck();
