@@ -60,6 +60,7 @@ const starTwoModal = document.getElementById('star-two-modal');
 const starThreeModal = document.getElementById('star-three-modal');
 const deck = document.getElementById('game');
 
+
 // var for timer
 let timer = new Timer();
 
@@ -199,8 +200,7 @@ function gameInit() {
                                 // clicked = "";
                                 // previousTarget = "";
                                 // cardClear.classList.remove('selected', 'match', 'front', 'back');console.log("all .selected and .match classes cleared");
-                const element = document.querySelectorAll(".card");
-                      element.classList.remove("card");
+                      deck.classList.remove("card");
                       deck.classList.add('hidden');console.log('remove deck');
                       // document.getElementsByClassName('card').classList.remove('selected', 'match', 'front', 'back');
                 console.log("Win screen pops up");
