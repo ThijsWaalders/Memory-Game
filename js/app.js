@@ -47,17 +47,16 @@ const delay = 1200;
 const delayLong = 2400;
 let matchCount = 0; // counter for amounth of matches goes till 16
 const move = document.getElementById('move');
-const moveModal = document.getElementById('move-modal');
 let moves = 0; // counter for all moves, so 2 cards turned = 1 move
 const stars = document.getElementById('stars');
-const starsModal = document.getElementById('stars-modal');
+const starsModal = document.getElementById('stars_modal');
 let starCounter = 0;
-const starOne = document.getElementById('star-one'); // Create reference to #stars
-const starTwo = document.getElementById('star-two');
-const starThree = document.getElementById('star-three');
-const starOneModal = document.getElementById('star-one-modal'); // Create reference to #stars on the modal screen
-const starTwoModal = document.getElementById('star-two-modal');
-const starThreeModal = document.getElementById('star-three-modal');
+const starOne = document.getElementById('star_one'); // Create reference to #stars
+const starTwo = document.getElementById('star_two');
+const starThree = document.getElementById('star_three');
+const starOneModal = document.getElementById('star_one_modal'); // Create reference to #stars on the modal screen
+const starTwoModal = document.getElementById('star_two_modal');
+const starThreeModal = document.getElementById('star_three_modal');
 const deck = document.getElementById('game');
 const cards = document.getElementsByClassName('card');
 
@@ -65,11 +64,11 @@ const cards = document.getElementsByClassName('card');
 let timer = new Timer();
 
 // variables for DOM selection
-const scorePanel = document.querySelector(".score-panel");
-const modal = document.querySelector(".modal-done");
-const modalStart = document.querySelector(".modal-start");
-const modalDone = document.querySelector(".modal-done");
-const startButton = document.querySelectorAll(".start-button");
+const scorePanel = document.querySelector(".score_panel");
+const modal = document.querySelector(".modal_done");
+const modalStart = document.querySelector(".modal_start");
+const modalDone = document.querySelector(".modal_done");
+const startButton = document.querySelectorAll(".start_button");
 const selectGrid = document.querySelector(".grid");
 const selectCard = document.querySelectorAll(".card");
 
@@ -206,7 +205,7 @@ function gameInit() {
                 document.getElementById('score_board').classList.add('hidden');
                 console.log("Win screen pops up");
                 timer.pause();
-                $('#show-timer-score .values').html(
+                $('#show_timer_score .values').html(
                     'It took you ' + timer.getTimeValues().toString(['hours', 'minutes', 'seconds']) + ' to win the game with a total of ' + moves + ' moves ' + 'and your star rating is: ');
                 setTimeout(resetGuesses, delay);
                 clicked.parentNode.classList.remove('selected');

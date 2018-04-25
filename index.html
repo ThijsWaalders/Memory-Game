@@ -12,24 +12,22 @@
     <script src="js/easyTimer.min.js"></script>
 </head>
 <body>
-
     <div class="container">
         <header>
             <h1>Matching Game</h1>
         </header>
-        <div class="score-panel" id="score_board">
-
+        <div class="score_panel" id="score_board">
             <span id="move">0</span> <p>- moves</p>
             <div id="stars">
-                <div class="fa fa-star" id="star-one"></div>
-                <div class="fa fa-star" id="star-two"></div>
-                <div class="fa fa-star" id="star-three"></div>
+                <div class="fa fa-star" id="star_one"></div>
+                <div class="fa fa-star" id="star_two"></div>
+                <div class="fa fa-star" id="star_three"></div>
                 &NonBreakingSpace;
             </div>
             <div id="callbackExample">
                 <div class="values">00:00</div>
             </div>
-            <div class="start-button" id="restart-button">
+            <div class="start_button" id="restart_button">
         		<i class="fa fa-repeat"></i>
         	</div>
         </div>
@@ -37,25 +35,25 @@
         <ul class="deck hidden" id="game">
         </ul>
 
-        <div class="modal-start">
+        <div class="modal_start">
             <h1>Welcome!</h1><br>
             <h4>Pick a set of 2 cards, do they match?</h4>
             <br>
             <i class="fa fa-play fa-3x start-button" id="start_button"></i>
         </div>
 
-        <div class="modal-done hidden">
+        <div class="modal_done hidden">
             <h1>Congratulations!</h1><br>
-                <div id="show-timer-score">
+                <div id="show_timer_score">
                     <div class="values">&NonBreakingSpace;</div>
                 </div><br>
-                <div id="stars-modal">
-                <div class="fa fa-star" id="star-one-modal"></div>
-                <div class="fa fa-star" id="star-two-modal"></div>
-                <div class="fa fa-star" id="star-three-modal"></div>
+                <div id="stars_modal">
+                <div class="fa fa-star" id="star_one_modal"></div>
+                <div class="fa fa-star" id="star_two_modal"></div>
+                <div class="fa fa-star" id="star_three_modal"></div>
             </div>
             <p>Play again?</p>
-            <div class="start-button">
+            <div class="start_button">
             <i class="fa fa-play fa-3x"></i>
         </div>
         </div>

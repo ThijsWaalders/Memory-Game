@@ -20,7 +20,7 @@ h2 {
 
 body {
   margin: 20px 0;
-  background: #6589F9;
+  background: #6589f9;
   font-family: 'Averia Serif Libre';
 }
 
@@ -40,10 +40,10 @@ body {
   padding: 15px;
   border-radius: 10px;
   max-width: 720px;
-  background: #E5E83A;
-  background: -moz-linear-gradient(-45deg, #E5E83A 0%, #C5347F 100%);
-  background: -webkit-linear-gradient(-45deg, #E5E83A 0%, #C5347F 100%);
-  background: linear-gradient(135deg, #E5E83A 0%, #C5347F 100%);
+  background: #e5e83a;
+  background: -moz-linear-gradient(-45deg, #e5e83a 0%, #c5347f 100%);
+  background: -webkit-linear-gradient(-45deg, #e5e83a 0%, #c5347f 100%);
+  background: linear-gradient(135deg, #e5e83a 0%, #c5347f 100%);
   visibility: unset;
   /* used cssmatic.combos-shadow to create fast and simple shadowbox */
   -webkit-box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
@@ -71,7 +71,7 @@ body {
 
 /* front of the card (backside in real life) has a question mark */
 .front {
-    background: #FAB942 url('../img/question.png') no-repeat center center / contain;
+    background: #fab942 url('../img/question.png') no-repeat center center / contain;
     background-origin:padding-box;
     padding: 50%;    /*werkt niet??*/
     background-size: 20%;
@@ -100,12 +100,7 @@ body {
   transform: rotateY(360deg);
 }
 
-/* .card .selected .match {
-  visibility: visible;
-  transform: rotateY(0deg);
-} */
-
-.score-panel {
+.score_panel {
   padding: 15px;
   display: flex;
   padding-top: 20px;
@@ -116,7 +111,7 @@ body {
   margin: auto;
 }
 
-.score-panel li  {
+.score_panel li  {
   position: relative;
   list-style-type: none;
   padding: 0;
@@ -134,7 +129,7 @@ body {
   padding: 0;
 }
 
-#restart-button {
+#restart_button {
 margin: auto;
 }
 
@@ -143,7 +138,7 @@ margin: auto;
 }
 
 
-.modal-start {
+.modal_start {
   border-radius: 7px;
   padding: 30px;
   text-align: center;
@@ -163,7 +158,7 @@ margin: auto;
   box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
 }
 
-.modal-done {
+.modal_done {
   border-radius: 7px;
   text-align: center;
   margin: auto;
@@ -191,6 +186,6 @@ margin: auto;
   font-size: 1.2em;
 }
 
-.start-button {
+.start_button {
   cursor: pointer;
 }
