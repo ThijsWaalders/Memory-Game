@@ -70,6 +70,7 @@ const modal = document.querySelector(".modal-done");
 const modalStart = document.querySelector(".modal-start");
 const modalDone = document.querySelector(".modal-done");
 const startButton = document.querySelectorAll(".start-button");
+const selectGrid = document.querySelector(".grid");
 
 // create grid
 const game = document.getElementById('game');
@@ -100,7 +101,7 @@ const resetGuesses = function resetGuesses() {
       card.classList.remove('selected');
     });
 };
-const card = document.createElement('div');
+// const card = document.createElement('div');
 /**
  * @description Loop over all cards to create/shuffle/place them on the grid
  */
@@ -189,7 +190,13 @@ function gameInit() {
                 setTimeout(modal.classList.remove('hidden'), delayLong); console.log("SetTimeout modal");
                 // clearCards();
                 resetGuesses();
-                deck.classList.remove("card");
+                // const cards = document.getElementsByClassName('card');
+                // $(".card").removeClass('match', 'selected', 'back');
+                // $(".card").addClass('front');
+                // selectGrid.removeChild('.card');
+                // This gives us a live `HTMLCollection`
+
+                // removeCards();
                 deck.classList.add('hidden');console.log('remove deck');
                 // document.getElementsByClassName('card').classList.remove('selected', 'match', 'front', 'back');
                 console.log("Win screen pops up");
@@ -208,13 +215,21 @@ function gameInit() {
     }
     });
 }
-function clearCards(){
-  document.getElementById('game').innerHTML = "";
-  const cards = document.getElementsByClassName('card');
-                  cards.forEach(card => {
-                        cards[card].classList.remove('selected', 'match', 'front', 'back');
-                });
-              }
+// remove classnames from cards when restart
+const allCards = document.getElementsByClassName('card');
+function removeCards () {
+  while (allCards[0]) {
+    allCards[0].classList.remove('match', 'selected', 'back');
+  }
+}
+
+// function clearCards(){
+//   // document.getElementById('game').innerHTML = "";
+  // const cards = document.getElementsByClassName('card');
+//     for (let i = 0; i < cards.length; i++) {
+//       cards[card].classList.remove('selected', 'match', 'front', 'back');
+//     }
+// }
 
 /**
  * @description Create the star rating: loop over the moves variable and remove one or more stars
