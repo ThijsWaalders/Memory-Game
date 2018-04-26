@@ -14,13 +14,15 @@ header {
   font-family: 'Montez', cursive;
 }
 
-h1 {
-  font-size: 1.7em;
-  padding-top: 10px;
-}
-
 h2 {
   font-family: 'Montez', cursive;
+}
+
+#welcome {
+  margin-top: -15px;
+}
+h4 {
+  margin-top: -30px;
 }
 
 body {
@@ -29,16 +31,7 @@ body {
   font-family: 'Averia Serif Libre';
 }
 
-.container {
-  width: 100%;
-  max-width: 768px;
-  height: auto;
-  margin: auto;
-  padding: 15px;
-}
 .grid {
-  width: 100%;
-  height: 100%;
   max-width: 900px;
   margin: 0 auto;
   display: grid;
@@ -46,16 +39,15 @@ body {
   justify-content: space-evenly;
   grid-template-columns: repeat(4,1fr);
   grid-template-rows: 115px 115px 115px 115px; /* first row .header 80px second row .hero 350px third row .main auto fourth row .footer 80px */
+  grid-gap: 30px;
 }
 
 .deck {
   margin: auto;
   padding: 15px;
   border-radius: 10px;
-  width: 100%;
-  height: 100%;
+  width: 80%;
   max-width: 720px;
-  /* height: 485px;; */
   background: #e5e83a;
   background: -moz-linear-gradient(-45deg, #e5e83a 0%, #c5347f 100%);
   background: -webkit-linear-gradient(-45deg, #e5e83a 0%, #c5347f 100%);
@@ -65,19 +57,15 @@ body {
   -webkit-box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
   -moz-box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
   box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
-  /* overflow: auto; */
   }
 
 .card {
   cursor: pointer;
   margin: auto;
-  height: 70px;
-  width: 70px;
-  min-height: 48px;
-  min-width: 48px;
-  margin: auto;
+  height: 100px;
+  width: 100px;
   position: relative;
-  transition: all .2s linear;
+  transition: all .4s linear;
   transform-style: preserve-3d;
   border-radius: 7px;
 }
@@ -125,10 +113,11 @@ body {
   display: flex;
   padding-top: 20px;
   text-align: left;
-  font-size: 1.6em;
+  font-size: 2em;
   font-family: 'Indie Flower', cursive;
   max-width: 450px;
   margin: auto;
+  overflow: auto;
 }
 
 .score_panel li  {
@@ -164,14 +153,15 @@ margin: auto;
   text-align: center;
   margin: auto;
   background-color: azure;
-  width: 80%;
-  height: auto;
+  width: 30%;
+  height: 30%;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   visibility: unset;
   opacity: 1;
+  overflow: auto;
   /* used cssmatic.combos-shadow to create fast and simple shadowbox */
   -webkit-box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
   -moz-box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
@@ -195,7 +185,6 @@ margin: auto;
   -webkit-box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
   -moz-box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
   box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
-  overflow: auto;
 }
 
 .hidden {
@@ -209,34 +198,8 @@ margin: auto;
 
 .start_button {
   cursor: pointer;
+  position: absolute;
 }
-
-@media screen and (min-width: 768px) {
-  .deck {
-    padding: 1em;
-  }
-
-  .card {
-    width: 100px;
-    height: 100px;
-  }
-  .modal_start {
-    width: 40%;
-  }
+.fa-play {
+  margin-left: -15px;
 }
-
-@media screen and (min-width: 550px) and (max-width: 767px) {
-  .deck {
-    padding: 1em;
-  } */
-
-  .card {
-    width: 95px;
-    height: 95px;
-  }
-  .modal_start {
-    width: 60%;
-  }
-}
-
-

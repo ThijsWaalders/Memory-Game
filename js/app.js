@@ -144,36 +144,10 @@ function gameInit() {
   grid.appendChild(card);
   card.appendChild(front);
   card.appendChild(back);
-  // remove old stars
-  // if(stars === parentNode.starThree) {
-  //   stars.removeChild(starThree);
-  // }
-  // if (stars.hasChildNodes()) {
-  //   // It has at least one
-  //   // starThree.classList.remove('fa fa-star');
-  //   // .removeChild(starThree);console.log('starThree removed');
-  // }
+  // add stars to scoreboard
   starThree.classList.add('fa-star');
   starTwo.classList.add('fa-star');
   starOne.classList.add('fa-star');
-
-  // starThree.classList.remove(fa, fa-star);
-  // starTwo.classList.remove(fa, fa-star);
-  // starOne.classList.remove(fa, fa-star);
-  // stars.classList.add(starThree);console.log('starThree added');
-
-  // starsModal.removeChild(starThreeModal);console.log('starThreeModal removed');
-  // stars.removeChild(starTwo);console.log('starTwo removed');
-  // starsModal.removeChild(starTwoModal);console.log('starTwoModal removed');
-  // stars.removeChild(starOne);console.log('starOne removed');
-  // starsModal.removeChild(starOneModal);console.log('starOneModal removed');
-  // // add stars
-  // stars.appendChild(starThree);console.log('starThree added');
-  // starsModal.appendChild(starThreeModal);console.log('starThreeModal added');
-  // stars.appendChild(starTwo);console.log('starTwo added');
-  // starsModal.appendChild(starTwoModal);console.log('starTwoModal added');
-  // stars.appendChild(starOne);console.log('starOne added');
-  // starsModal.appendChild(starOneModal);console.log('starOneModal added');
   }
 );
     // add eventlistener to grid to flip the cards when a card is clicked
@@ -191,12 +165,10 @@ function gameInit() {
         if (count === 1) {
         // assign first guess
         firstGuess = clicked.parentNode.dataset.name;
-        console.log(firstGuess);
         clicked.parentNode.classList.add('selected');
             } else {
         // assign second guess
         secondGuess = clicked.parentNode.dataset.name;
-        console.log(secondGuess);
         clicked.parentNode.classList.add('selected');
         // set innerText to moves
         move.innerText = moves;
@@ -207,18 +179,15 @@ function gameInit() {
         // and the first guess matches the second guess
         if (firstGuess === secondGuess) {
             // then run the match function with a little delay
-            console.log("You've got a match!");
             setTimeout(match(), delay);
             // write a function to show the winning screen/modal when all 16 cards match
             // When a user wins the game, a modal appears to congratulate the player and ask if they want to play again. It should also tell the user how much time it took to win the game, and what the star rating was.
             if (matchCount === 16) {
-                console.log("matchCount = 16");
-                setTimeout(match(), delay);console.log("setTimeout match delay");
-                setTimeout(modal.classList.remove('hidden'), delayLong); console.log("SetTimeout modal");
+                setTimeout(match(), delay);
+                setTimeout(modal.classList.remove('hidden'), delayLong);
                 resetGuesses();
-                deck.classList.add('hidden');console.log('remove deck');
+                deck.classList.add('hidden');
                 document.getElementById('score_board').classList.add('hidden');
-                console.log("Win screen pops up");
                 timer.pause();
                 $('#show_timer_score .values').html(
                     'It took you ' + timer.getTimeValues().toString(['hours', 'minutes', 'seconds']) + ' to win the game with a total of ' + moves + ' moves ' + 'and your star rating is: ');
@@ -243,17 +212,14 @@ function starRating (){
     starThree.classList.remove('fa-star');
     starThreeModal.classList.remove('fa-star');
     starCounter++;
-    console.log("star three removed");
   } else if (moves === 16) {
     starTwo.classList.remove('fa-star');
     starTwoModal.classList.remove('fa-star');
     starCounter++;
-    console.log("star two removed");
   } else if (moves === 34) {
     starOne.classList.remove('fa-star');
     starOneModal.classList.remove('fa-star');
     starCounter++;
-    console.log("star one removed");
   }
 }
 
@@ -265,18 +231,16 @@ function starRating (){
 for (let i = 0; i < startButton.length; i++) {
   startButton[i].addEventListener('click',function () {
     resetGame();
-    setTimeout(gameInit(),delayLong);console.log('game clear');
+    setTimeout(gameInit(),delayLong);
     document.getElementById('score_board').classList.remove('hidden');
     modalStart.classList.add('hidden');
     modalDone.classList.add('hidden');
     deck.classList.remove('hidden');
-    console.log("Game starts now, good luck!");
     timer.stop();
     timer.start({callback: function (timer) {
       $('#callbackExample .values').html(
         timer.getTimeValues().toString(['minutes', 'seconds'])
       );
     }});
-    console.log("timer is gestart!");
     });
 }
