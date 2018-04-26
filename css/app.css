@@ -15,6 +15,7 @@ header {
 }
 
 h1 {
+  z-index: 3;
   font-size: 1.7em;
   padding-top: 10px;
 }
@@ -24,10 +25,13 @@ h2 {
 }
 
 body {
-  width: 100%;
-  height: 100%;
-  margin: 20px 0;
-  background: #6589f9;
+  position: relative;
+  background-image: url("../img/background.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  /* width: 100%; */
+  /* height: 100%; */
+  margin: auto;
   font-family: 'Averia Serif Libre';
 }
 
@@ -174,7 +178,7 @@ margin: auto;
   left: 50%;
   transform: translate(-50%, -50%);
   visibility: unset;
-  opacity: 1;
+  opacity: 0.86;
   /* used cssmatic.combos-shadow to create fast and simple shadowbox */
   -webkit-box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
   -moz-box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
@@ -214,8 +218,9 @@ margin: auto;
   cursor: pointer;
 }
 
+/* added some nice background animation for the birds */
 .bird {
-	background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/174479/bird-cells.svg);
+	background-image: url("../img/bird-cells.png");
 	background-size: auto 100%;
 	width: 88px;
 	height: 125px;
@@ -226,27 +231,33 @@ margin: auto;
 }
 
 .bird__one {
+  z-index: -1;
+  margin-top: 13px;
   margin-left: -13.2vw;
   animation-duration: 1s;
-  animation-delay: -0.5s;
+  /* animation-delay: -0.5s; */
 }
 
 .bird__two {
+  z-index: 5;
   margin-left: -4.8vw;
   animation-duration: 0.9s;
   animation-delay: -0.75s;
 }
 
 .bird__three {
+  z-index: -4;
+  margin-top: 3px;
   left: -36.143vw;
   animation-duration: 1.25s;
   animation-delay: -0.25s;
 }
 
 .bird__four {
+  margin-top: 6px;
   left: -47.7334vw;
   animation-duration: 1.1s;
-  animation-delay: -0.5s;
+  animation-delay: -0.531s;
 }
 
 
@@ -284,7 +295,7 @@ margin: auto;
   animation-delay: 8.6334s;
 }
 
-
+/* keyframes are also for the birds */
 @keyframes fly-cycle {
 
 	100% {
@@ -430,3 +441,5 @@ margin: auto;
 }
 
 
+
+/* got the bird css animation from https://www.creativebloq.com/inspiration/css-animation-examples */
