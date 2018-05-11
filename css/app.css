@@ -1,0 +1,450 @@
+/* creating a flex grid with the cards. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+header {
+  height: 60px;
+  margin-top: -40px;
+  text-align: center;
+  font-size: 1.8em;
+  font-family: 'Montez', cursive;
+}
+
+h1 {
+  z-index: 3;
+  font-size: 1.7em;
+  padding-top: 10px;
+}
+
+h2 {
+  font-family: 'Montez', cursive;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height: 100%;
+  position: relative;
+  background: #D0E4F5 url("../img/background.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 5px;
+  font-family: 'Averia Serif Libre';
+}
+
+.container {
+  width: 100%;
+  max-width: 720px;
+  height: auto;
+  margin: auto;
+  padding: 15px;
+}
+
+.grid {
+  width: 100%;
+  height: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  grid-template-columns: repeat(4,1fr);
+  grid-template-rows: 115px 115px 115px 115px; /* first row .header 80px second row .hero 350px third row .main auto fourth row .footer 80px */
+}
+
+.deck {
+  z-index: 2;
+  margin: auto;
+  padding: 15px;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  max-width: 720px;
+  background: #e5e83a;
+  background: -moz-linear-gradient(-45deg, #e5e83a 0%, #c5347f 100%);
+  background: -webkit-linear-gradient(-45deg, #e5e83a 0%, #c5347f 100%);
+  background: linear-gradient(135deg, #e5e83a 0%, #c5347f 100%);
+  visibility: unset;
+  /* used cssmatic.combos-shadow to create fast and simple shadowbox */
+  -webkit-box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
+  -moz-box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
+  box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
+  }
+
+.card {
+  z-index: 3;
+  cursor: pointer;
+  margin: auto;
+  height: 70px;
+  width: 70px;
+  min-height: 48px;
+  min-width: 48px;
+  margin: auto;
+  position: relative;
+  transition: all .2s linear;
+  transform-style: preserve-3d;
+  border-radius: 7px;
+}
+
+.back,
+.front {
+    position: absolute;
+    backface-visibility: hidden;
+    border-radius: 7px;
+}
+
+/* front of the card (backside in real life) has a question mark */
+.front {
+    background: #fab942 url('../img/question.png') no-repeat center center / contain;
+    background-origin:padding-box;
+    padding: 50%;    /*werkt niet??*/
+    background-size: 20%;
+  }
+
+.back {
+    transform: rotateY(180deg);
+    width: 100px;
+    height: 100px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Selected items will be rotated */
+.selected {
+    transform: rotateY(180deg);
+  }
+
+.match .front {
+  visibility: hidden;
+}
+
+/* let the matched cards stay rotated */
+.match .back {
+  margin: 0;
+  transform: rotateY(360deg);
+}
+
+.score_panel {
+  padding: 15px;
+  display: flex;
+  padding-top: 20px;
+  text-align: left;
+  font-size: 1.6em;
+  font-family: 'Indie Flower', cursive;
+  max-width: 450px;
+  margin: auto;
+}
+
+.score_panel li  {
+  position: relative;
+  list-style-type: none;
+  padding: 0;
+  overflow: hidden;
+}
+
+#move {
+  margin: auto;
+}
+
+#stars {
+  display: inline-block;
+  position: relative;
+  margin: auto;
+  padding: 0;
+}
+
+#restart_button {
+margin: auto;
+}
+
+#callbackExample {
+  margin: auto;
+}
+
+
+.modal_start {
+  border-radius: 7px;
+  padding: 30px;
+  text-align: center;
+  margin: auto;
+  background-color: azure;
+  /* width: 90%; */
+  height: auto;
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  visibility: unset;
+  opacity: 0.86;
+  /* used cssmatic.combos-shadow to create fast and simple shadowbox */
+  -webkit-box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
+  -moz-box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
+  box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
+}
+
+.modal_done {
+  border-radius: 7px;
+  text-align: center;
+  margin: auto;
+  visibility: unset;
+  background-color: azure;
+  min-width: 400px;
+  height: 350px;
+  padding: 10px;
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.86;
+  /* used cssmatic.combos-shadow to create fast and simple shadowbox */
+  -webkit-box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
+  -moz-box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
+  box-shadow: 6px 7px 49px -9px rgba(0, 0, 0, 0.296);
+  overflow: auto;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+#time {
+  color: rgb(226, 193, 4);
+  font-size: 1.2em;
+}
+
+.start_button {
+  cursor: pointer;
+}
+
+/* added some nice background animation for the birds */
+.bird {
+	background-image: url("../img/bird-cells.png");
+	background-size: auto 100%;
+	width: 88px;
+	height: 125px;
+  will-change: background-position;
+	animation-name: fly-cycle;
+	animation-timing-function: steps(10);
+	animation-iteration-count: infinite;
+}
+
+.bird__one {
+  z-index: -1;
+  margin-top: 48px;
+  margin-left: -13.2vw;
+  animation-duration: 1s;
+  /* animation-delay: -0.5s; */
+}
+
+.bird__two {
+  z-index: 5;
+  margin-left: -4.8vw;
+  animation-duration: 0.9s;
+  animation-delay: -0.75s;
+}
+
+.bird__three {
+  z-index: -4;
+  margin-top: 98px;
+  left: -36.143vw;
+  animation-duration: 1.25s;
+  animation-delay: -0.25s;
+}
+
+.bird__four {
+  margin-top: 136px;
+  left: -47.7334vw;
+  animation-duration: 1.1s;
+  animation-delay: -0.531s;
+}
+
+
+
+.bird-container {
+  z-index: 1;
+	position: absolute;
+	top: -4%;
+	left: -7.5vw;
+	transform: scale(0);
+	will-change: transform;
+	animation-name: fly-right-one;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.one {
+  animation-duration: 15s;
+  animation-delay: 2.2s;
+}
+
+.two {
+  animation-duration: 16s;
+  animation-delay: 3s;
+}
+
+.three {
+  animation-duration: 14.6s;
+  animation-delay: 6.24s;
+}
+
+.four {
+  animation-duration: 19.33s;
+  animation-delay: 8.6334s;
+}
+
+/* keyframes are also for the birds */
+@keyframes fly-cycle {
+
+	100% {
+		background-position: -900px 0;
+	}
+
+}
+
+@keyframes fly-right-one {
+
+	0% {
+		left: -10%;
+		transform: scale(0.3);
+	}
+
+	10% {
+		left: 10%;
+		transform: translateY(2vh) scale(0.4);
+	}
+
+	20% {
+		left: 30%;
+		transform: translateY(0vh) scale(0.5);
+	}
+
+	30% {
+		left: 50%;
+		transform: translateY(4vh) scale(0.6);
+	}
+
+	40% {
+		left: 70%;
+		transform: translateY(2vh) scale(0.6);
+	}
+
+	50% {
+		left: 90%;
+		transform: translateY(0vh) scale(0.6);
+	}
+
+	60% {
+		left: 110%;
+		transform: translateY(0vh) scale(0.6);
+	}
+
+	100% {
+		left: 110%;
+		opacity: 1;
+		transform: translateY(0vh) scale(0.6);
+	}
+
+}
+
+@keyframes fly-right-two {
+
+	0% {
+		left: -10%;
+		opacity: 1;
+		transform: translateY(-2vh) scale(0.5);
+	}
+
+	10% {
+		left: 10%;
+		transform: translateY(0vh) scale(0.4);
+	}
+
+	20% {
+		left: 30%;
+		transform: translateY(-4vh) scale(0.6);
+	}
+
+	30% {
+		left: 50%;
+		transform: translateY(1vh) scale(0.45);
+	}
+
+	40% {
+		left: 70%;
+		transform: translateY(-2.5vh) scale(0.5);
+	}
+
+	50% {
+		left: 90%;
+		transform: translateY(0vh) scale(0.45);
+	}
+
+	51% {
+		left: 110%;
+		transform: translateY(0vh) scale(0.45);
+	}
+
+	100% {
+		left: 110%;
+		transform: translateY(0vh) scale(0.45);
+	}
+
+}
+
+@keyframes fly-cycle {
+  100% {
+  background-position: -900px 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  .deck {
+    padding: 1em;
+  }
+
+  .card {
+    background-size: 95%;
+    width: 100px;
+    height: 100px;
+  }
+  .modal_start {
+    width: 40%;
+  }
+}
+
+@media screen and (min-width: 520px) and (max-width: 767px){
+  .card {
+    background-size: 80%;
+    height: 80px;
+    width: 80px;
+  }
+
+}
+
+@media screen and (min-width: 480px) and (max-width: 520px) {
+  .deck {
+    padding: 1em;
+  } */
+
+  .card {
+    background-size: 90%;
+    width: 95px;
+    height: 95px;
+  }
+  .modal_start {
+    width: 70%;
+  }
+}
+
+
+
+/* got the bird css animation from https://www.creativebloq.com/inspiration/css-animation-examples */
